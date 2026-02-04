@@ -1,73 +1,702 @@
-import styles from "../../styles/home.module.css";
+"use client";
 import Image from "next/image";
+import {
+  FiTarget,
+  FiUsers,
+  FiGlobe,
+  FiCheckCircle,
+  FiLayers,
+  FiCode,
+  FiArrowRight,
+} from "react-icons/fi";
+import { useEffect, useRef, useState } from "react";
+import { LuMousePointerClick } from "react-icons/lu";
+import { LiaIndustrySolid } from "react-icons/lia";
+import { 
+  FaGlobeAmericas, 
+  FaRocket, 
+  FaChartLine,
+  FaBuilding,
+  FaDatabase,
+  FaCloud,
+  FaMobileAlt
+} from "react-icons/fa";
 
+// Updated MoreAboutUsButton with the new style from Hero button
+function MoreAboutUsButton() {
+  return (
+    <div className="w-fit">
+      <button
+        className="group inline-flex items-center gap-3
+                   px-8 py-4
+                   rounded-full
+                   border border-white/30
+                   overflow-hidden
+                    
+                   transition-all duration-300"
+      >
+        {/* TEXT */}
+        <span className="relative block w-[130px] h-6 overflow-hidden">
+          <span
+            className="absolute inset-0 flex items-center text-white
+                       transition-transform duration-500
+                       group-hover:translate-x-full"
+          >
+            More About Us
+          </span>
+
+          <span
+            className="absolute inset-0 flex items-center text-white
+                       -translate-x-full
+                       transition-transform duration-500
+                       group-hover:translate-x-0"
+          >
+            More About Us
+          </span>
+        </span>
+
+        {/* ARROW */}
+        <span
+          className="relative w-9 h-9 rounded-full
+                     bg-gradient-to-r from-white to-white
+                     flex items-center justify-center
+                     overflow-hidden shrink-0
+                     group-hover:from-white group-hover:to-white
+                     transition-all duration-300"
+        >
+          <span
+            className="absolute inset-0 flex items-center justify-center
+                       text-blue-600
+                       transition-transform duration-500
+                       group-hover:translate-x-full"
+          >
+            <FiArrowRight className="w-5 h-5" />
+          </span>
+
+          <span
+            className="absolute inset-0 flex items-center justify-center
+                       text-blue-600
+                       -translate-x-full
+                       transition-transform duration-500
+                       group-hover:translate-x-0"
+          >
+            <FiArrowRight className="w-5 h-5" />
+          </span>
+        </span>
+      </button>
+    </div>
+  );
+}
+
+// Statistics Grid Component - Stacked & Left-Aligned
+function StatisticsGrid() {
+  const stats = [
+    {
+      value: "100",
+      percentage: "%",
+      label: "Focus On Solutions",
+      description: "Complete dedication to solving client challenges",
+      icon: <FiTarget className="w-10 h-10" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-gray-900 rounded-full",
+    },
+    {
+      value: "8",
+      plus: "+",
+      label: "Team Experience",
+      description: "Years of collective expertise in digital solutions",
+      icon: <FiUsers className="w-10 h-10" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-gray-900 rounded-full",
+    },
+    {
+      value: "23",
+      plus: "+",
+      label: "Countries Served",
+      description: "Global reach with international client base",
+      icon: <FiGlobe className="w-10 h-10" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-gray-900 rounded-full",
+    },
+    {
+      value: "80",
+      plus: "+",
+      label: "Projects Delivered",
+      description: "Successful digital transformations completed",
+      icon: <LuMousePointerClick className="w-10 h-10" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-gray-900 rounded-full",
+    },
+    {
+      value: "13",
+      plus: "+",
+      label: "Industry Verticals",
+      description: "Diverse industry expertise and solutions",
+      icon: <LiaIndustrySolid className="w-10 h-10" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-gray-900 rounded-full",
+    },
+    {
+      value: "47",
+      plus: "+",
+      label: "Development Staff",
+      description: "Skilled professionals driving innovation",
+      icon: <FiCode className="w-10 h-10" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-gray-900 rounded-full",
+    },
+  ];
+
+  return (
+    <div className="w-full py-16 md:py-20">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {stats.map((stat, index) => (
+            <div key={index} className="group">
+              {/* Left-Aligned Card Container */}
+              <div className="bg-gray-900/40  rounded-4xl p-8  border-b-3 border-[#003BD7]   flex flex-col text-left">
+                {/* ICON (Top Left) */}
+                <div className={`mb-6 p-4 ${stat.bgColor} w-fit`}>
+                  <div className={stat.color}>{stat.icon}</div>
+                </div>
+
+                {/* VALUE with colored symbol */}
+                <div className="mb-3 leading-none flex items-baseline">
+                  {/* White number */}
+                  <div className="text-5xl md:text-6xl  text-white">
+                    {stat.value}
+                  </div>
+                  {/* Blue symbol (% or +) */}
+                  <div className={`text-6xl md:text-6xl  ${stat.color} ml-1`}>
+                    {stat.percentage || stat.plus}
+                  </div>
+                </div>
+
+                {/* LABEL (Below Value, Left) */}
+                <div className="text-2xl  text-white mb-4">{stat.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Alternative: Simple version without description
+function SimpleStatisticsGrid() {
+  const stats = [
+    {
+      value: "100",
+      percentage: "%",
+      label: "Focus On Solutions",
+      icon: <FiTarget className="w-8 h-8" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-black",
+    },
+    {
+      value: "8",
+      plus: "+",
+      label: "Team Experience",
+      icon: <FiUsers className="w-8 h-8" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-black",
+    },
+    {
+      value: "23",
+      plus: "+",
+      label: "Countries Served",
+      icon: <FiGlobe className="w-8 h-8" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-black",
+    },
+    {
+      value: "80",
+      plus: "+",
+      label: "Projects Delivered",
+      icon: <FiCheckCircle className="w-8 h-8" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-black",
+    },
+    {
+      value: "13",
+      plus: "+",
+      label: "Industry Verticals",
+      icon: <FiLayers className="w-8 h-8" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-black",
+    },
+    {
+      value: "47",
+      plus: "+",
+      label: "Development Staff",
+      icon: <FiCode className="w-8 h-8" />,
+      color: "text-[#003BD7]",
+      bgColor: "bg-black",
+    },
+  ];
+
+  return (
+    <div className="w-full py-12 md:py-16">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {stats.map((stat, index) => (
+            <div key={index} className="group">
+              {/* Simple Left-Aligned Card */}
+              <div className="bg-transparent rounded-xl p-6 hover:bg-gray-900/20 transition-all duration-300 flex flex-col text-left">
+                {/* ICON */}
+                <div className={`mb-4 ${stat.color}`}>{stat.icon}</div>
+
+                {/* VALUE with colored symbol */}
+                <div className="flex items-baseline mb-2">
+                  <div className="text-4xl md:text-5xl font-bold text-white">
+                    {stat.value}
+                  </div>
+                  <div
+                    className={`text-4xl md:text-5xl font-bold ${stat.color} ml-1`}
+                  >
+                    {stat.percentage || stat.plus}
+                  </div>
+                </div>
+
+                {/* LABEL */}
+                <div className="text-xl font-semibold text-white">
+                  {stat.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Alternative: Minimal version
+function MinimalStatisticsGrid() {
+  const stats = [
+    {
+      value: "100",
+      percentage: "%",
+      label: "Focus On Solutions",
+      color: "text-[#003BD7]",
+    },
+    {
+      value: "8",
+      plus: "+",
+      label: "Team Experience",
+      color: "text-[#003BD7]",
+    },
+    {
+      value: "23",
+      plus: "+",
+      label: "Countries Served",
+      color: "text-[#003BD7]",
+    },
+    {
+      value: "80",
+      plus: "+",
+      label: "Projects Delivered",
+      color: "text-[#003BD7]",
+    },
+    {
+      value: "13",
+      plus: "+",
+      label: "Industry Verticals",
+      color: "text-[#003BD7]",
+    },
+    {
+      value: "47",
+      plus: "+",
+      label: "Development Staff",
+      color: "text-[#003BD7]",
+    },
+  ];
+
+  return (
+    <div className="w-full py-12 md:py-16">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-left">
+              <div className="space-y-4">
+                {/* VALUE with colored symbol */}
+                <div className="flex items-baseline">
+                  <div className="text-5xl md:text-6xl font-bold text-white">
+                    {stat.value}
+                  </div>
+                  <div
+                    className={`text-5xl md:text-6xl font-bold ${stat.color} ml-1`}
+                  >
+                    {stat.percentage || stat.plus}
+                  </div>
+                </div>
+
+                {/* LABEL */}
+                <div className="text-2xl font-semibold text-white">
+                  {stat.label}
+                </div>
+
+                {/* Separator Line */}
+                <div className="h-0.5 w-16 bg-gradient-to-r from-[#003BD7] to-transparent opacity-60"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Industry Leaders Component with React Icons
+function IndustryLeaders() {
+  const companies = [
+    {
+      name: "ASGARDIA",
+      icon: <FaRocket className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "nirastate",
+      icon: <FaBuilding className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "velocity",
+      icon: <FaChartLine className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "OUTOSIA",
+      icon: <FaGlobeAmericas className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "ASGARDIA",
+      icon: <FaRocket className="w-8 h-8" />,
+      color: "text-white"
+    },
+  ];
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const scrollWidth = scrollContainer.scrollWidth;
+    const clientWidth = scrollContainer.clientWidth;
+    const maxScroll = scrollWidth - clientWidth;
+
+    let animationId: number;
+    let scrollPosition = 0;
+    const speed = 1.0;
+
+    const animateScroll = () => {
+      if (!isPaused && scrollContainer) {
+        scrollPosition += speed;
+
+        if (scrollPosition >= maxScroll / 5) {
+          scrollPosition = 0;
+        }
+
+        scrollContainer.scrollLeft = scrollPosition;
+        animationId = requestAnimationFrame(animateScroll);
+      }
+    };
+
+    animationId = requestAnimationFrame(animateScroll);
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [isPaused]);
+
+  return (
+    <div className="w-full py-6 md:py-1 border-2 border-white/20 mt-9">
+      <div className="px-4 sm:px-6 lg:px-8">
+        {/* Auto-Scrolling Logos */}
+        <div className="relative overflow-hidden">
+          <div
+            ref={scrollRef}
+            className="flex items-center space-x-8 md:space-x-12 lg:space-x-16 py-4"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            style={{
+              overflowX: "hidden",
+              whiteSpace: "nowrap",
+              WebkitOverflowScrolling: "touch",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            <style jsx>{`
+              div::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+
+            {/* First Set */}
+            {companies.map((company, index) => (
+              <div key={index} className="flex-shrink-0">
+                <div className="w-56 flex items-center justify-center">
+                  {/* Logo and Name Container - Side by Side */}
+                  <div className="flex items-center gap-4 px-4">
+                    {/* Logo Container */}
+                    <div className="flex-shrink-0">
+                      <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
+                        {company.icon}
+                      </div>
+                    </div>
+
+                    {/* Company Name - Side of Logo */}
+                    <div className={`text-xl ${company.color}`}>
+                      {company.name}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Duplicate Set for Seamless Loop */}
+            {companies.map((company, index) => (
+              <div key={`dup-${index}`} className="flex-shrink-0">
+                <div className="w-56 flex items-center justify-center">
+                  {/* Logo and Name Container - Side by Side */}
+                  <div className="flex items-center gap-4 px-4">
+                    {/* Logo Container */}
+                    <div className="flex-shrink-0">
+                      <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
+                        {company.icon}
+                      </div>
+                    </div>
+
+                    {/* Company Name - Side of Logo */}
+                    <div className={`text-xl font-bold ${company.color}`}>
+                      {company.name}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Alternative: With different React Icons
+function IndustryLeadersVariant() {
+  const companies = [
+    {
+      name: "ASGARDIA",
+      icon: <FaRocket className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "nirastate",
+      icon: <FaBuilding className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "velocity",
+      icon: <FaDatabase className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "OUTOSIA",
+      icon: <FaCloud className="w-8 h-8" />,
+      color: "text-white"
+    },
+    {
+      name: "ASGARDIA",
+      icon: <FaMobileAlt className="w-8 h-8" />,
+      color: "text-white"
+    },
+  ];
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const scrollWidth = scrollContainer.scrollWidth;
+    const clientWidth = scrollContainer.clientWidth;
+    const maxScroll = scrollWidth - clientWidth;
+
+    let animationId: number;
+    let scrollPosition = 0;
+    const speed = 0.5;
+
+    const animateScroll = () => {
+      if (!isPaused && scrollContainer) {
+        scrollPosition += speed;
+
+        if (scrollPosition >= maxScroll / 2) {
+          scrollPosition = 0;
+        }
+
+        scrollContainer.scrollLeft = scrollPosition;
+        animationId = requestAnimationFrame(animateScroll);
+      }
+    };
+
+    animationId = requestAnimationFrame(animateScroll);
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [isPaused]);
+
+  return (
+    <div className="w-full py-6 md:py-1 border-2 border-white/20 mt-9">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden">
+          <div
+            ref={scrollRef}
+            className="flex items-center space-x-8 md:space-x-12 lg:space-x-16 py-4"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            style={{
+              overflowX: "hidden",
+              whiteSpace: "nowrap",
+              WebkitOverflowScrolling: "touch",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            <style jsx>{`
+              div::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+
+            {/* First Set */}
+            {companies.map((company, index) => (
+              <div key={index} className="flex-shrink-0">
+                <div className="w-56 flex items-center justify-center">
+                  <div className="flex items-center gap-4 px-4">
+                    <div className="flex-shrink-0">
+                      <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
+                        {company.icon}
+                      </div>
+                    </div>
+                    <div className={`text-xl ${company.color}`}>
+                      {company.name}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Duplicate Set */}
+            {companies.map((company, index) => (
+              <div key={`dup-${index}`} className="flex-shrink-0">
+                <div className="w-56 flex items-center justify-center">
+                  <div className="flex items-center gap-4 px-4">
+                    <div className="flex-shrink-0">
+                      <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
+                        {company.icon}
+                      </div>
+                    </div>
+                    <div className={`text-xl font-bold ${company.color}`}>
+                      {company.name}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Main AboutUs Component
 export default function AboutUs() {
   return (
-    <section className={styles.aboutSection}>
-      <div className={styles.aboutTop}>
-        {/* LEFT CONTENT */}
-        <div className={styles.aboutText}>
-          <span className={styles.sectionTag}>About Us</span>
+    <section className="w-full min-h-screen bg-black">
+      {/* TOP SECTION */}
+      <div className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="relative flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+          {/* LEFT CONTENT */}
+          <div className="lg:w-1/2">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="inline-block">
+                <span className="text-white font-semibold text-3xl tracking-wider">
+                  About Us
+                </span>
+              </div>
+            </div>
 
-          <h2>
-            Trusted By Startups And Businesses <br />
-            To Build Future-Ready Digital Solutions.
-          </h2>
+            <h1 className="text-4xl md:text-5xl lg:text-4xl text-white leading-tight mb-6">
+              Trusted By Startups And Businesses
+              <br />
+              To Build Future-Ready Digital Solutions
+            </h1>
 
-          <p>
-            We combine strategy, design, and technology to build scalable
-            digital products for growing businesses.
-          </p>
+            <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-3xl">
+              We Combine Strategy, Design, And Technology To Build Scalable
+              Digital Products For Growing Businesses.
+            </p>
 
-          <button className={styles.secondaryBtn}>
-            More About Us <span>→</span>
-          </button>
-        </div>
+            {/* Updated "More About Us" Button with new style */}
+            <MoreAboutUsButton />
+          </div>
 
-        {/* RIGHT IMAGE */}
-        <div className={styles.aboutImage}>
-          <Image
-            src="/images/Rectangle1290.png"
-            alt="About Us"
-            width={520}
-            height={380}
-            className={styles.image}
-          />
-        </div>
-      </div>
+          {/* RIGHT IMAGE */}
+          <div className="lg:w-1/2 relative">
+            <div className="relative rounded-4xl overflow-hidden">
+              <Image
+                src="/about.png"
+                alt="About Us"
+                width={600}
+                height={450}
+                className="w-full h-auto object-cover rounded-3xl transform hover:scale-105 transition-transform duration-700"
+                priority={true}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent rounded-3xl"></div>
+            </div>
 
-      {/* STATS */}
-      <div className={styles.statsGrid}>
-        <div className={styles.statCard}>
-          <h3>100%</h3>
-          <p>Focus On Solutions</p>
-        </div>
+            <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-900/20 to-cyan-900/20 rounded-full opacity-70 blur-xl"></div>
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-full opacity-70 blur-xl"></div>
 
-        <div className={styles.statCard}>
-          <h3>8+</h3>
-          <p>Team Experience</p>
-        </div>
-
-        <div className={styles.statCard}>
-          <h3>23+</h3>
-          <p>Countries Served</p>
-        </div>
-
-        <div className={styles.statCard}>
-          <h3>80+</h3>
-          <p>Projects Delivered</p>
-        </div>
-
-        <div className={styles.statCard}>
-          <h3>13+</h3>
-          <p>Industry Verticals</p>
-        </div>
-
-        <div className={styles.statCard}>
-          <h3>47+</h3>
-          <p>Development Staff</p>
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-3xl opacity-30"></div>
+          </div>
         </div>
       </div>
+
+      {/* SEPARATOR LINE */}
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="border-t border-white/20 w-full"></div>
+      </div>
+      {/* Version 1: Full with description */}
+      <StatisticsGrid />
+      {/* SEPARATOR LINE */}
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="border-t border-white/20 w-full"></div>
+      </div>
+      {/* INDUSTRY LEADERS SECTION */}
+      <IndustryLeaders />
     </section>
   );
 }
