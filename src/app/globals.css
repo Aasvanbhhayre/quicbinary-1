@@ -25,3 +25,31 @@ body {
   color: #fff;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+
+@keyframes knowMoreHover {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  45% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+
+  46% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+/* IMPORTANT: no "forwards" so it replays on every hover */
+.group-hover\:animate-knowMoreHover {
+  animation: knowMoreHover 0.8s ease-in-out;
+}
