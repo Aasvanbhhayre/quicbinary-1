@@ -183,172 +183,7 @@ function StatisticsGrid() {
   );
 }
 
-// Alternative: Simple version without description
-function SimpleStatisticsGrid() {
-  const stats = [
-    {
-      value: "100",
-      percentage: "%",
-      label: "Focus On Solutions",
-      icon: <FiTarget className="w-8 h-8" />,
-      color: "text-[#003BD7]",
-      bgColor: "bg-black",
-    },
-    {
-      value: "8",
-      plus: "+",
-      label: "Team Experience",
-      icon: <FiUsers className="w-8 h-8" />,
-      color: "text-[#003BD7]",
-      bgColor: "bg-black",
-    },
-    {
-      value: "23",
-      plus: "+",
-      label: "Countries Served",
-      icon: <FiGlobe className="w-8 h-8" />,
-      color: "text-[#003BD7]",
-      bgColor: "bg-black",
-    },
-    {
-      value: "80",
-      plus: "+",
-      label: "Projects Delivered",
-      icon: <FiCheckCircle className="w-8 h-8" />,
-      color: "text-[#003BD7]",
-      bgColor: "bg-black",
-    },
-    {
-      value: "13",
-      plus: "+",
-      label: "Industry Verticals",
-      icon: <FiLayers className="w-8 h-8" />,
-      color: "text-[#003BD7]",
-      bgColor: "bg-black",
-    },
-    {
-      value: "47",
-      plus: "+",
-      label: "Development Staff",
-      icon: <FiCode className="w-8 h-8" />,
-      color: "text-[#003BD7]",
-      bgColor: "bg-black",
-    },
-  ];
-
-  return (
-    <div className="w-full py-12 md:py-16">
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="group">
-              {/* Simple Left-Aligned Card */}
-              <div className="bg-transparent rounded-xl p-6 hover:bg-gray-900/20 transition-all duration-300 flex flex-col text-left">
-                {/* ICON */}
-                <div className={`mb-4 ${stat.color}`}>{stat.icon}</div>
-
-                {/* VALUE with colored symbol */}
-                <div className="flex items-baseline mb-2">
-                  <div className="text-4xl md:text-5xl font-bold text-white">
-                    {stat.value}
-                  </div>
-                  <div
-                    className={`text-4xl md:text-5xl font-bold ${stat.color} ml-1`}
-                  >
-                    {stat.percentage || stat.plus}
-                  </div>
-                </div>
-
-                {/* LABEL */}
-                <div className="text-xl font-semibold text-white">
-                  {stat.label}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Alternative: Minimal version
-function MinimalStatisticsGrid() {
-  const stats = [
-    {
-      value: "100",
-      percentage: "%",
-      label: "Focus On Solutions",
-      color: "text-[#003BD7]",
-    },
-    {
-      value: "8",
-      plus: "+",
-      label: "Team Experience",
-      color: "text-[#003BD7]",
-    },
-    {
-      value: "23",
-      plus: "+",
-      label: "Countries Served",
-      color: "text-[#003BD7]",
-    },
-    {
-      value: "80",
-      plus: "+",
-      label: "Projects Delivered",
-      color: "text-[#003BD7]",
-    },
-    {
-      value: "13",
-      plus: "+",
-      label: "Industry Verticals",
-      color: "text-[#003BD7]",
-    },
-    {
-      value: "47",
-      plus: "+",
-      label: "Development Staff",
-      color: "text-[#003BD7]",
-    },
-  ];
-
-  return (
-    <div className="w-full py-12 md:py-16">
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-left">
-              <div className="space-y-4">
-                {/* VALUE with colored symbol */}
-                <div className="flex items-baseline">
-                  <div className="text-5xl md:text-6xl font-bold text-white">
-                    {stat.value}
-                  </div>
-                  <div
-                    className={`text-5xl md:text-6xl font-bold ${stat.color} ml-1`}
-                  >
-                    {stat.percentage || stat.plus}
-                  </div>
-                </div>
-
-                {/* LABEL */}
-                <div className="text-2xl font-semibold text-white">
-                  {stat.label}
-                </div>
-
-                {/* Separator Line */}
-                <div className="h-0.5 w-16 bg-gradient-to-r from-[#003BD7] to-transparent opacity-60"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Industry Leaders Component with React Icons
+// Industry Leaders Component - FIXED VERSION (auto-scroll doesn't stop on hover)
 function IndustryLeaders() {
   const companies = [
     {
@@ -379,11 +214,9 @@ function IndustryLeaders() {
   ];
 
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isPaused) return;
-
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
@@ -393,19 +226,17 @@ function IndustryLeaders() {
 
     let animationId: number;
     let scrollPosition = 0;
-    const speed = 1.0;
+    const speed = 0.8;
 
     const animateScroll = () => {
-      if (!isPaused && scrollContainer) {
-        scrollPosition += speed;
+      scrollPosition += speed;
 
-        if (scrollPosition >= maxScroll / 5) {
-          scrollPosition = 0;
-        }
-
-        scrollContainer.scrollLeft = scrollPosition;
-        animationId = requestAnimationFrame(animateScroll);
+      if (scrollPosition >= maxScroll / 2) {
+        scrollPosition = 0;
       }
+
+      scrollContainer.scrollLeft = scrollPosition;
+      animationId = requestAnimationFrame(animateScroll);
     };
 
     animationId = requestAnimationFrame(animateScroll);
@@ -415,18 +246,16 @@ function IndustryLeaders() {
         cancelAnimationFrame(animationId);
       }
     };
-  }, [isPaused]);
+  }, []);
 
   return (
     <div className="w-full py-6 md:py-1 border-2 border-white/20 mt-9">
       <div className="px-4 sm:px-6 lg:px-8">
-        {/* Auto-Scrolling Logos */}
-        <div className="relative overflow-hidden">
+        {/* Auto-Scrolling Logos - Continuous scroll without hover pause */}
+        <div className="relative overflow-hidden" ref={containerRef}>
           <div
             ref={scrollRef}
             className="flex items-center space-x-8 md:space-x-12 lg:space-x-16 py-4"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
             style={{
               overflowX: "hidden",
               whiteSpace: "nowrap",
@@ -445,16 +274,12 @@ function IndustryLeaders() {
             {companies.map((company, index) => (
               <div key={index} className="flex-shrink-0">
                 <div className="w-56 flex items-center justify-center">
-                  {/* Logo and Name Container - Side by Side */}
                   <div className="flex items-center gap-4 px-4">
-                    {/* Logo Container */}
                     <div className="flex-shrink-0">
                       <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
                         {company.icon}
                       </div>
                     </div>
-
-                    {/* Company Name - Side of Logo */}
                     <div className={`text-xl ${company.color}`}>
                       {company.name}
                     </div>
@@ -467,17 +292,31 @@ function IndustryLeaders() {
             {companies.map((company, index) => (
               <div key={`dup-${index}`} className="flex-shrink-0">
                 <div className="w-56 flex items-center justify-center">
-                  {/* Logo and Name Container - Side by Side */}
                   <div className="flex items-center gap-4 px-4">
-                    {/* Logo Container */}
                     <div className="flex-shrink-0">
                       <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
                         {company.icon}
                       </div>
                     </div>
-
-                    {/* Company Name - Side of Logo */}
                     <div className={`text-xl font-bold ${company.color}`}>
+                      {company.name}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Third Set for better continuity */}
+            {companies.map((company, index) => (
+              <div key={`third-${index}`} className="flex-shrink-0">
+                <div className="w-56 flex items-center justify-center">
+                  <div className="flex items-center gap-4 px-4">
+                    <div className="flex-shrink-0">
+                      <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
+                        {company.icon}
+                      </div>
+                    </div>
+                    <div className={`text-xl ${company.color}`}>
                       {company.name}
                     </div>
                   </div>
@@ -526,11 +365,8 @@ function IndustryLeadersVariant() {
   ];
 
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return;
-
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
@@ -543,16 +379,14 @@ function IndustryLeadersVariant() {
     const speed = 0.5;
 
     const animateScroll = () => {
-      if (!isPaused && scrollContainer) {
-        scrollPosition += speed;
+      scrollPosition += speed;
 
-        if (scrollPosition >= maxScroll / 2) {
-          scrollPosition = 0;
-        }
-
-        scrollContainer.scrollLeft = scrollPosition;
-        animationId = requestAnimationFrame(animateScroll);
+      if (scrollPosition >= maxScroll / 2) {
+        scrollPosition = 0;
       }
+
+      scrollContainer.scrollLeft = scrollPosition;
+      animationId = requestAnimationFrame(animateScroll);
     };
 
     animationId = requestAnimationFrame(animateScroll);
@@ -562,7 +396,7 @@ function IndustryLeadersVariant() {
         cancelAnimationFrame(animationId);
       }
     };
-  }, [isPaused]);
+  }, []);
 
   return (
     <div className="w-full py-6 md:py-1 border-2 border-white/20 mt-9">
@@ -571,8 +405,6 @@ function IndustryLeadersVariant() {
           <div
             ref={scrollRef}
             className="flex items-center space-x-8 md:space-x-12 lg:space-x-16 py-4"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
             style={{
               overflowX: "hidden",
               whiteSpace: "nowrap",
@@ -640,7 +472,13 @@ export default function AboutUs() {
         <div className="relative flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           {/* LEFT CONTENT */}
           <div className="lg:w-1/2">
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-3 mb-6">
+              <Image 
+                src="/logo.png" 
+                alt="About Us icon" 
+                width={18} 
+                height={18} 
+              />
               <div className="inline-block">
                 <span className="text-white font-semibold text-3xl tracking-wider">
                   About Us
@@ -695,7 +533,7 @@ export default function AboutUs() {
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="border-t border-white/20 w-full"></div>
       </div>
-      {/* INDUSTRY LEADERS SECTION */}
+      {/* INDUSTRY LEADERS SECTION - Now it won't stop on hover */}
       <IndustryLeaders />
     </section>
   );
