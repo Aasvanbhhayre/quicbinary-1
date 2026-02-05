@@ -1,35 +1,27 @@
-"use client";
-
-import Image from "next/image";
-import { useState } from "react";
 import styles from "../../styles/home.module.css";
 
 /* ================= DATA ================= */
 
 const WORK_ROWS = [
   {
-    left: {
-      src: "/rectangle4.png",
-      title: "FYDE",
-      desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
-    },
-    right: {
-      src: "/rectangle3.png",
-      title: "FYDE",
-      desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
-    },
+    title: "FYDE",
+    desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
+    variant: "light",
   },
   {
-    left: {
-      src: "/workImg3.png",
-      title: "FYDE",
-      desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
-    },
-    right: {
-      src: "/image2.png",
-      title: "FYDE",
-      desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
-    },
+    title: "FYDE",
+    desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
+    variant: "dark",
+  },
+  {
+    title: "FYDE",
+    desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
+    variant: "dark",
+  },
+  {
+    title: "FYDE",
+    desc: "Visuals were curated to evoke a sense of avant-garde sophistication.",
+    variant: "light",
   },
 ];
 
@@ -38,30 +30,42 @@ const WORK_ROWS = [
 export default function OurWork() {
   return (
     <section className={styles.workSection}>
+      {/* HEADER */}
       <div className={styles.workHeader}>
-        <div className={styles.headerLeft}>
-          <div className={styles.tagRow}>
-            <Image src="/logo.png" alt="logo" width={18} height={18} />
-            <span className={styles.sectionTag}>Our Works</span>
-          </div>
+        <div>
+          <span className={styles.sectionTag}>Our Works</span>
           <h2>Latest Works</h2>
         </div>
 
-        <p className={styles.headerDesc}>
+        <p>
           We craft digital experiences from idea to launch — blending strategy,
           design, and engineering to build products that perform.
         </p>
       </div>
 
-      <div className={styles.workRows}>
-        {WORK_ROWS.map((row, index) => (
-          <WorkRow key={index} left={row.left} right={row.right} />
+      {/* GRID */}
+      <div className={styles.workGrid}>
+        {works.map((item, index) => (
+          <div key={index} className={styles.workCard}>
+            <div
+              className={`${styles.workImage} ${
+                item.variant === "dark" ? styles.darkCard : styles.lightCard
+              }`}
+            >
+              {/* Placeholder UI */}
+              <div className={styles.mockUi}></div>
+            </div>
+
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
         ))}
       </div>
 
-      <div className={styles.viewAllWrap}>
-        <ViewAllButton />
-      </div>
+      {/* VIEW ALL */}
+      <button className={styles.viewAll}>
+        View All <span>→</span>
+      </button>
     </section>
   );
 }
