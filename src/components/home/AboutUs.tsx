@@ -531,7 +531,7 @@ export default function AboutUs() {
       <StatisticsGrid />
       {/* SEPARATOR LINE */}
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="border-t border-white/20 w-full"></div>
+        <div className="border-t border-white/10 w-full"></div>
       </div>
       {/* INDUSTRY LEADERS SECTION - Now it won't stop on hover */}
       <IndustryLeaders />

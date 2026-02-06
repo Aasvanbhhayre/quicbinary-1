@@ -315,9 +315,14 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Optional: Full width decorative elements */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-700/50 to-transparent" />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-700/50 to-transparent" />
+      {/* ===== SEPARATING LINE AT THE END ===== */}
+      <div className="w-full ">
+        <div className="relative">
+          {/* MAIN LINE */}
+          <div className="border-t border-white/20 w-full"></div>
+        </div>
+      </div>
     </section>
+    
   );
 }

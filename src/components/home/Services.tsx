@@ -9,7 +9,7 @@ export default function Services() {
   return (
     <section className="w-full bg-black text-white py-24 px-6">
       {/* ===== TOP HEADER ===== */}
-      <div className="max-w-[1400px] mx-auto mb-32">
+      <div className="w-full mb-32">
         <div className="flex items-center gap-3 mb-6">
           <Image src="/logo.png" alt="Services icon" width={18} height={18} />
           <span className="text-sm tracking-widest text-gray-300">
@@ -88,6 +88,14 @@ export default function Services() {
           description="SEO, paid ads & growth strategies that convert users."
         />
       </div>
+
+      {/* ===== SEPARATING LINE AT THE END ===== */}
+      <div className="w-full mt-32">
+        <div className="relative">
+          {/* MAIN LINE */}
+          <div className="border-t border-white/20 w-full"></div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -142,13 +150,13 @@ function ServiceRow({
           <div className="min-h-[150px]">
             <h3
               className="
-      text-5xl md:text-6xl
-      font-medium
-      leading-tight
-      whitespace-pre-line
-      w-max
-      max-w-full
-    "
+                text-5xl md:text-6xl
+                font-medium
+                leading-tight
+                whitespace-pre-line
+                w-max
+                max-w-full
+              "
             >
               {title}
             </h3>

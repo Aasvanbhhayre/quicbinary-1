@@ -37,27 +37,26 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="bg-black px-6 py-[120px]">
+    <section className="bg-black px-6 ">
       {/* HEADER */}
-      <div className="max-w-[1200px] mx-auto mb-[100px]">
+      <div className="w-full mb-[100px]">
         <div className="flex items-center gap-3 mb-6">
           <Image src="/logo.png" alt="Process icon" width={18} height={18} />
-          <span className="text-xl tracking-widest text-gray-300">
+          <span className="text-2xl tracking-widest text-gray-300">
             Process
           </span>
         </div>
 
-        <h2 className="text-[42px] text-white font-normal">
-          How We Work
-        </h2>
+        <h2 className="text-[65px] text-white font-normal">How We Work</h2>
       </div>
 
       {/* TIMELINE */}
-      <div className="max-w-[1200px] mx-auto relative h-[420px]">
-
+      <div className="max-w-[1600px] mx-auto relative h-[420px]">
         {/* MAIN DASHED LINE */}
-        <div className="absolute left-0 right-0 top-[280px]
-                        border-t border-dashed border-[#5da9ff]/60 z-0" />
+        <div
+          className="absolute left-0 right-0 top-[280px]
+                        border-t border-dashed border-[#5da9ff]/60 z-0"
+        />
 
         <div className="grid grid-cols-5 relative z-10 h-full">
           {steps.map((item) => (
@@ -67,9 +66,7 @@ export default function Process() {
             >
               {/* TEXT BLOCK (ONLY THIS MOVES UP/DOWN) */}
               <div className={`relative ${item.textOffset}`}>
-                <h3 className="text-lg text-white mb-2">
-                  {item.title}
-                </h3>
+                <h3 className="text-lg text-white mb-2">{item.title}</h3>
 
                 <p className="text-[13px] text-[#bdbdbd] max-w-[200px] leading-relaxed">
                   {item.desc}
@@ -98,6 +95,14 @@ export default function Process() {
           ))}
         </div>
       </div>
+{/* ===== SEPARATING LINE AT THE END ===== */}
+      <div className="w-full mb-8">
+        <div className="relative">
+          {/* MAIN LINE */}
+          <div className="border-t border-white/20 w-full"></div>
+        </div>
+      </div>
+
     </section>
   );
 }

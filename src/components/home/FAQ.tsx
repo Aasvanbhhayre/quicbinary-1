@@ -30,9 +30,9 @@ export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-black px-6 py-[120px]">
+    <section className="bg-black px-6 py-[80px]">
       {/* HEADER */}
-      <div className="max-w-[1200px] mx-auto mb-[70px]">
+      <div className=" w-full mb-[70px]">
         <div className="flex items-center gap-3 mb-6">
           {/* LOGO */}
           <Image src="/logo.png" alt="logo" width={18} height={18} />
@@ -47,7 +47,7 @@ export default function FAQ() {
       </div>
 
       {/* FAQ LIST */}
-      <div className="max-w-[1200px] mx-auto flex flex-col gap-5">
+      <div className="w-full flex flex-col gap-5">
      {faqs.map((faq, index) => {
   const isActive = activeIndex === index;
 

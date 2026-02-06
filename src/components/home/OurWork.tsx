@@ -33,7 +33,7 @@ export default function OurWork() {
   return (
     <section className="bg-black px-6 py-[120px]">
       {/* HEADER */}
-      <div className="max-w-[1200px] mx-auto mb-[60px] flex justify-between items-end gap-10">
+      <div className="w-full mb-[60px] flex justify-between items-end gap-10">
         <div>
           <div className="flex items-center gap-3 mb-6">
             <Image src="/logo.png" alt="Services icon" width={18} height={18} />
@@ -53,7 +53,7 @@ export default function OurWork() {
       </div>
 
       {/* GRID */}
-      <div className="max-w-[1200px] mx-auto grid grid-cols-2 gap-8">
+      <div className="w-full grid grid-cols-2 gap-8">
         {works.map((item, index) => (
           <div
             key={index}
@@ -80,7 +80,7 @@ export default function OurWork() {
       </div>
 
       {/* VIEW ALL */}
-      <div className="max-w-[1200px] mx-auto">
+      <div className="">
         <button
           className="mt-[60px] flex items-center gap-2 bg-transparent
                      border border-white/40 text-white
@@ -90,6 +90,14 @@ export default function OurWork() {
           View All <span>→</span>
         </button>
       </div>
+      {/* ===== SEPARATING LINE AT THE END ===== */}
+      <div className="w-full mt-10">
+        <div className="relative">
+          {/* MAIN LINE */}
+          <div className="border-t border-white/20 w-full"></div>
+        </div>
+      </div>
     </section>
+    
   );
 }

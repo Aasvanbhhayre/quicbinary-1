@@ -1,20 +1,28 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Contact() {
   return (
-    <section className="bg-black px-6 py-[120px]">
+    <section className="bg-black px-4 ">
+      {/* HEADER WITH LOGO */}
+      <div className="w-full mb-[70px]"> </div>
+
       <div
-        className="max-w-[1200px] mx-auto
-                   grid grid-cols-2 gap-[60px]
-                   border border-white/[0.08]
-                   rounded-[24px]
-                   p-[60px]"
+        className="w-full
+                   grid grid-cols-1 lg:grid-cols-2 gap-[60px]
+                   border border-white/20
+                   p-[40px] lg:p-[60px]"
       >
         {/* LEFT CONTENT */}
         <div>
-          <span className="text-xs uppercase tracking-widest text-[#bdbdbd]">
+          <div className="flex items-center gap-3 mb-6">
+          {/* LOGO */}
+          <Image src="/logo.png" alt="logo" width={18} height={18} />
+          <span className="tracking-widest text-white uppercase text-2xl">
             Contact
           </span>
+        </div>
 
           <h2 className="text-[40px] leading-[1.2] text-white mt-4 mb-10 font-normal">
             Let’s Talk About What You’re <br />
@@ -22,20 +30,20 @@ export default function Contact() {
             Help.
           </h2>
 
-          <div>
-            <p className="mt-5 text-sm text-[#bdbdbd]">
-              • Want to call us?
-            </p>
-            <span className="block mt-1.5 text-[15px] text-white">
-              +91 58622 47845
-            </span>
+          <div className="space-y-8">
+            <div>
+              <p className="text-3xl text-white">• Want to call us?</p>
+              <span className="block mt-1.5 text-[20px] text-[#bdbdbd]">
+                +91 58622 47845
+              </span>
+            </div>
 
-            <p className="mt-5 text-sm text-[#bdbdbd]">
-              • Prefer the old way?
-            </p>
-            <span className="block mt-1.5 text-[15px] text-white">
-              contact@quicbinary.com
-            </span>
+            <div>
+              <p className="text-3xl text-white">• Prefer the old way?</p>
+              <span className="block mt-1.5 text-[20px] text-[#bdbdbd]">
+                contact@quicbinary.com
+              </span>
+            </div>
           </div>
         </div>
 
@@ -51,7 +59,8 @@ export default function Contact() {
                        text-sm text-white
                        outline-none
                        placeholder:text-[#9e9e9e]
-                       focus:border-[#0b5cff]"
+                       focus:border-[#0b5cff]
+                       transition-colors duration-200"
           />
 
           <input
@@ -64,7 +73,8 @@ export default function Contact() {
                        text-sm text-white
                        outline-none
                        placeholder:text-[#9e9e9e]
-                       focus:border-[#0b5cff]"
+                       focus:border-[#0b5cff]
+                       transition-colors duration-200"
           />
 
           <input
@@ -77,7 +87,8 @@ export default function Contact() {
                        text-sm text-white
                        outline-none
                        placeholder:text-[#9e9e9e]
-                       focus:border-[#0b5cff]"
+                       focus:border-[#0b5cff]
+                       transition-colors duration-200"
           />
 
           <input
@@ -90,7 +101,8 @@ export default function Contact() {
                        text-sm text-white
                        outline-none
                        placeholder:text-[#9e9e9e]
-                       focus:border-[#0b5cff]"
+                       focus:border-[#0b5cff]
+                       transition-colors duration-200"
           />
 
           <textarea
@@ -104,7 +116,8 @@ export default function Contact() {
                        outline-none
                        resize-none
                        placeholder:text-[#9e9e9e]
-                       focus:border-[#0b5cff]"
+                       focus:border-[#0b5cff]
+                       transition-colors duration-200"
           ></textarea>
 
           <button
@@ -115,8 +128,11 @@ export default function Contact() {
                        text-[15px]
                        py-[14px]
                        rounded-[12px]
-                       transition-opacity
-                       hover:opacity-90"
+                       transition-all duration-200
+                       hover:opacity-90
+                       hover:scale-[1.02]
+                       active:scale-[0.98]
+                       font-medium"
           >
             SUBMIT
           </button>
