@@ -6,41 +6,43 @@ export default function Contact() {
   return (
     <>
       {/* CONTACT SECTION */}
-      <section className="bg-black text-white py-50">
+      <section className="bg-black text-white py-35 sm:py-25 md:py-25 lg:py-40">
         {/* TOP HEADER */}
-        <div className="text-center mb-4">
-          <h1 className="text-9xl font-semibold">Contact Us</h1>
-          <p className="text-gray-400 text-3xl mt-8 mb-9 ">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-7xl font-semibold">
+            Contact Us
+          </h1>
+          <p className="text-gray-400 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-9 max-w-4xl mx-auto">
             Visuals Were Curated To Evoke A Sense Of Avant-Garde Sophistication.
           </p>
         </div>
 
         {/* IMAGE CARD */}
-        <div className="w-full mb-20 px-4">
-          <div className="rounded-2xl overflow-hidden shadow-lg">
+        <div className="w-full mb-10 sm:mb-14 md:mb-16 lg:mb-20 px-4">
+          <div className="rounded-2xl overflow-hidden shadow-lg max-w-7xl mx-auto">
             <img
-              src="/meeting.jpg" // put image in public folder
+              src="/meeting.jpg"
               alt="Team discussion"
-              className="w-full h-[600px] object-cover"
+              className="w-full h-auto sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] object-contain sm:object-cover"
             />
           </div>
         </div>
 
         {/* CONTACT CONTENT */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6">
           
           {/* LEFT INFO */}
           <div>
-            <h2 className="text-8xl  mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6">
               Have a question? <br /> Ask us!
             </h2>
 
-            <p className="text-gray-400 text-xl max-w-md mb-10">
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-md mb-6 sm:mb-8 md:mb-10">
               Have questions, feedback, or service inquiries? We&apos;re here to
               listen and respond quickly. Your input is important to us.
             </p>
 
-            <div className="space-y-6 text-gray-300">
+            <div className="space-y-4 sm:space-y-5 md:space-y-6 text-gray-300 text-sm sm:text-base">
               <div>
                 <h4 className="text-white font-medium mb-1">Address</h4>
                 <p>Janjeerwala square, Indore</p>
@@ -68,7 +70,7 @@ export default function Contact() {
           </div>
 
           {/* RIGHT FORM */}
-          <form className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 space-y-6">
+          <form className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6">
             
             <Input label="Name" placeholder="Richa Sharma" />
             <Input label="Email" placeholder="example@gmail.com" />
@@ -78,19 +80,19 @@ export default function Contact() {
             <Select label="Price Budget" />
 
             <div>
-              <label className="block text-sm mb-2 text-gray-300">
+              <label className="block text-xs sm:text-sm mb-2 text-gray-300">
                 Tell us about your project
               </label>
               <textarea
                 rows={4}
                 placeholder="Type here..."
-                className="w-full rounded-xl bg-white/10 border border-white/10 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-xl bg-white/10 border border-white/10 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:opacity-90 transition text-white font-medium"
+              className="w-full py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:opacity-90 transition text-white font-medium text-sm sm:text-base"
             >
               Submit Request
             </button>
@@ -113,11 +115,11 @@ interface InputProps {
 
 const Input = ({ label, placeholder }: InputProps) => (
   <div>
-    <label className="block text-sm mb-2 text-gray-300">{label}</label>
+    <label className="block text-xs sm:text-sm mb-2 text-gray-300">{label}</label>
     <input
       type="text"
       placeholder={placeholder}
-      className="w-full rounded-full bg-white/10 border border-white/10 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="w-full rounded-full bg-white/10 border border-white/10 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
   </div>
 );
@@ -128,8 +130,8 @@ interface SelectProps {
 
 const Select = ({ label }: SelectProps) => (
   <div>
-    <label className="block text-sm mb-2 text-gray-300">{label}</label>
-    <select className="w-full rounded-full bg-white/10 border border-white/10 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <label className="block text-xs sm:text-sm mb-2 text-gray-300">{label}</label>
+    <select className="w-full rounded-full bg-white/10 border border-white/10 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
       <option value="">Select {label}</option>
       <option value="option1">Option 1</option>
       <option value="option2">Option 2</option>
@@ -167,23 +169,23 @@ function NewFAQSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-black px-6 py-[80px]">
+    <section className="bg-black px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-[80px]">
       {/* HEADER */}
-      <div className="w-full mb-[70px]">
-        <div className="flex items-center gap-3 mb-6">
-          <Image src="/logo.png" alt="logo" width={24} height={24} />
-          <span className="tracking-[0.2em] text-white uppercase text-sm font-medium">
+      <div className="max-w-7xl mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-[70px]">
+        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <Image src="/logo.png" alt="logo" width={20} height={20} className="sm:w-6 sm:h-6" />
+          <span className="tracking-[0.15em] sm:tracking-[0.2em] text-white uppercase text-xs sm:text-sm font-medium">
             FAQs
           </span>
         </div>
 
-        <h2 className="text-[48px] md:text-[56px] text-white leading-[1.1] font-normal">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-white leading-[1.1] font-normal">
           Frequently Asked <br /> Questions
         </h2>
       </div>
 
       {/* FAQ LIST */}
-      <div className="w-full flex flex-col gap-5">
+      <div className="max-w-7xl mx-auto flex flex-col gap-3 sm:gap-4 md:gap-5">
         {newFaqs.map((faq, index) => {
           const isActive = activeIndex === index;
 
@@ -195,7 +197,7 @@ function NewFAQSection() {
                 group
                 cursor-pointer
                 flex
-                rounded-[40px]
+                rounded-[20px] sm:rounded-[30px] md:rounded-[40px]
                 overflow-hidden
                 border border-white/[0.08]
                 transition-all duration-500
@@ -205,10 +207,10 @@ function NewFAQSection() {
               {/* LEFT NUMBER PILL */}
               <div
                 className={`
-                  w-[70px] md:w-[90px]
+                  w-[50px] sm:w-[60px] md:w-[70px] lg:w-[90px]
                   flex items-center justify-center
-                  text-[18px] font-medium
-                  rounded-l-[40px]
+                  text-sm sm:text-base md:text-[18px] font-medium
+                  rounded-l-[20px] sm:rounded-l-[30px] md:rounded-l-[40px]
                   border-r border-white/[0.08]
                   transition-colors duration-500
                   ${isActive ? "bg-[#1E1E1E] text-[#99CCFF]" : "bg-[#1E1E1E] text-white"}
@@ -221,15 +223,15 @@ function NewFAQSection() {
               <div
                 className={`
                   flex-1
-                  px-8 py-7
+                  px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-7
                   transition-all duration-500 ease-in-out
                   ${isActive ? "bg-[#99CCFF]" : "bg-[#1E1E1E]"}
                 `}
               >
                 {/* QUESTION ROW */}
-                <div className="flex items-center justify-between gap-6">
+                <div className="flex items-center justify-between gap-3 sm:gap-4 md:gap-6">
                   <h4
-                    className={`text-[16px] md:text-[18px] font-medium transition-colors duration-500 ${
+                    className={`text-sm sm:text-base md:text-[18px] font-medium transition-colors duration-500 ${
                       isActive ? "text-black" : "text-white"
                     }`}
                   >
@@ -237,7 +239,7 @@ function NewFAQSection() {
                   </h4>
 
                   <div
-                    className={`text-[50px] font-light transition-transform duration-500 ${
+                    className={`text-3xl sm:text-4xl md:text-[50px] font-light transition-transform duration-500 flex-shrink-0 ${
                       isActive ? "rotate-45 text-black" : "rotate-0 text-white"
                     }`}
                   >
