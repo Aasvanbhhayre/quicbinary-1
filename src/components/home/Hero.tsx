@@ -141,56 +141,44 @@ function AnimatedIdeasText() {
   }, []);
 
   return (
-    <span className="group inline-block relative">
+    <span className="inline-block relative">
       <div
-        className="inline-block px-8 py-3 rounded-full relative overflow-hidden transition-all duration-300 cursor-pointer"
+        className="inline-block px-4 sm:px-8 py-2 sm:py-3 rounded-full relative overflow-hidden transition-all duration-300 cursor-pointer"
         style={{
-          border: `1px solid ${isHovered ? "#3b82f6" : "#99CCFF"}`, // blue-500 on hover
+          border: `1px solid ${isHovered ? "#3b82f6" : "#99CCFF"}`,
           boxShadow: isHovered
             ? "0 0 25px rgba(59, 130, 246, 0.3)"
             : "0 0 20px rgba(153, 204, 255, 0.1)",
           backgroundColor: isHovered
             ? "rgba(59, 130, 246, 0.15)"
-            : "transparent", // blue-500
+            : "transparent",
           transition: "all 0.3s ease",
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Text Container with proper height and alignment */}
-        <div className="relative h-[50px] w-[170px] flex items-center justify-center overflow-hidden">
-          {/* Current Text - Slides Up on hover */}
+        <div className="relative h-[40px] sm:h-[50px] w-[100px] sm:w-[170px] flex items-center justify-center overflow-hidden">
           <span
-            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300"
+            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-6xl font-medium leading-none tracking-wider"
             style={{
               transform: isHovered ? "translateY(-100%)" : "translateY(0%)",
               opacity: isHovered ? 0 : 1,
-              fontSize: "3.75rem",
-              fontWeight: "500",
-              lineHeight: "1",
-              letterSpacing: "2.5px",
             }}
           >
             Ideas
           </span>
 
-          {/* New Text - Enters from Bottom on hover */}
           <span
-            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300"
+            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-6xl font-medium leading-none tracking-wider"
             style={{
               transform: isHovered ? "translateY(0%)" : "translateY(100%)",
               opacity: isHovered ? 1 : 0,
-              fontSize: "3.75rem",
-              fontWeight: "500",
-              lineHeight: "1",
-              letterSpacing: "2.5px",
             }}
           >
             Ideas
           </span>
         </div>
 
-        {/* Hover effect overlay */}
         <span
           className="absolute inset-0 rounded-full transition-all duration-300 pointer-events-none"
           style={{
@@ -203,7 +191,6 @@ function AnimatedIdeasText() {
           }}
         />
 
-        {/* Glow effect during animation */}
         {isAnimating && isHovered && (
           <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 via-blue-400/10 to-blue-500/20 animate-pulse pointer-events-none" />
         )}
@@ -214,38 +201,32 @@ function AnimatedIdeasText() {
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden">
-      {/* Full width background */}
-      <div className="absolute inset-0 w-full bg-[linear-gradient(to_top_right,_#0b1224_10%,_#050505_25%,_#050505_45%,_#0b1224_100%)]" />
+    <section className="relative w-full min-h-screen overflow-x-hidden">
+      <div className="absolute inset-0 w-full bg-gradient-to-br from-[#0d1117] via-black to-[#0a0e1a]" />
 
-      {/* HERO SECTION with Mouse Effect - FULL WIDTH */}
       <div className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
         <div className="absolute inset-0 w-full pointer-events-none">
           <HeroMouseEffect />
         </div>
         <div className="relative z-20 w-full max-w-6xl mx-auto">
           <div className="mb-12">
-            <h1 className="text-3xl md:text-5xl lg:text-8xl  text-white leading-[0.9]">
-              Turning{" "}
-              <div className="inline-block mx-4">
-                <AnimatedIdeasText />
-              </div>{" "}
-              Into
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl text-white leading-tight flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+              <span>Turning</span>
+              <AnimatedIdeasText />
+              <span>Into</span>
             </h1>
           </div>
 
-          {/* Heading 2 - Scalable Digital Products - Proper spacing */}
-          <div className="mb-1">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[0.9]">
+          <div className="mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white leading-tight px-4">
               <em className="font-normal italic text-white">
                 Scalable Digital Products
               </em>
             </h2>
           </div>
 
-          {/* Description - Proper spacing and alignment */}
           <div className="mb-20">
-            <p className="text-xl md:text-2xl lg:text-3xl text-white/80 font-light tracking-wide max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light tracking-wide max-w-4xl mx-auto leading-relaxed px-4">
               We design and develop high-performance web and mobile solutions
               built for growth.
             </p>

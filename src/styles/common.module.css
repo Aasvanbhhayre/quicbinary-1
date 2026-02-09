@@ -29,6 +29,12 @@
   gap: 32px;
 }
 
+@media (max-width: 1023px) {
+  .navLinks {
+    display: none;
+  }
+}
+
 .navLinks a {
   color: #cfcfcf;
   text-decoration: none;
