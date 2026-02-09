@@ -99,6 +99,7 @@ function StatisticsGrid() {
       icon: <FiTarget className="w-10 h-10" />,
       color: "text-[#003BD7]",
       bgColor: "bg-gray-900 rounded-full",
+      borderColor: "border-b-[#003BD7]", 
     },
     {
       value: "8",
@@ -108,6 +109,7 @@ function StatisticsGrid() {
       icon: <FiUsers className="w-10 h-10" />,
       color: "text-[#003BD7]",
       bgColor: "bg-gray-900 rounded-full",
+      borderColor: "border-b-[3652A3]",
     },
     {
       value: "23",
@@ -115,8 +117,9 @@ function StatisticsGrid() {
       label: "Countries Served",
       description: "Global reach with international client base",
       icon: <FiGlobe className="w-10 h-10" />,
-      color: "text-[#003BD7]",
+      color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
+      borderColor: "border-b-[#3652A3]",
     },
     {
       value: "80",
@@ -124,8 +127,9 @@ function StatisticsGrid() {
       label: "Projects Delivered",
       description: "Successful digital transformations completed",
       icon: <LuMousePointerClick className="w-10 h-10" />,
-      color: "text-[#003BD7]",
+      color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
+      borderColor: "border-b-[3652A3]", 
     },
     {
       value: "13",
@@ -133,17 +137,19 @@ function StatisticsGrid() {
       label: "Industry Verticals",
       description: "Diverse industry expertise and solutions",
       icon: <LiaIndustrySolid className="w-10 h-10" />,
-      color: "text-[#003BD7]",
+      color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
+      borderColor: "border-b-[#3652A3]", 
     },
     {
       value: "47",
       plus: "+",
       label: "Development Staff",
       description: "Skilled professionals driving innovation",
-      icon: <FiCode className="w-10 h-10" />,
-      color: "text-[#003BD7]",
+      icon: <FiCode className="w-10 h-10 text-[#003BD7]" />,
+      color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
+      borderColor: "border-b-[#003BD7]", 
     },
   ];
 
@@ -153,8 +159,8 @@ function StatisticsGrid() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {stats.map((stat, index) => (
             <div key={index} className="group">
-              {/* Left-Aligned Card Container */}
-              <div className="bg-gray-900/40  rounded-4xl p-8  border-b-3 border-[#003BD7]   flex flex-col text-left">
+              {/* Left-Aligned Card Container with dynamic border color */}
+              <div className={`bg-gray-900/40 rounded-4xl p-8 border-b-3 ${stat.borderColor} flex flex-col text-left`}>
                 {/* ICON (Top Left) */}
                 <div className={`mb-6 p-4 ${stat.bgColor} w-fit`}>
                   <div className={stat.color}>{stat.icon}</div>
@@ -163,17 +169,17 @@ function StatisticsGrid() {
                 {/* VALUE with colored symbol */}
                 <div className="mb-3 leading-none flex items-baseline">
                   {/* White number */}
-                  <div className="text-5xl md:text-6xl  text-white">
+                  <div className="text-5xl md:text-6xl text-white">
                     {stat.value}
                   </div>
-                  {/* Blue symbol (% or +) */}
-                  <div className={`text-6xl md:text-6xl  ${stat.color} ml-1`}>
+                  {/* Colored symbol (% or +) */}
+                  <div className={`text-6xl md:text-6xl ${stat.color} ml-1`}>
                     {stat.percentage || stat.plus}
                   </div>
                 </div>
 
                 {/* LABEL (Below Value, Left) */}
-                <div className="text-2xl  text-white mb-4">{stat.label}</div>
+                <div className="text-2xl text-white mb-4">{stat.label}</div>
               </div>
             </div>
           ))}

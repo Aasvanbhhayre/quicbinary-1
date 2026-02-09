@@ -34,6 +34,138 @@ import {
   SiWix,
 } from "react-icons/si";
 
+// FAQ Component - Same as from About page
+function FAQSection() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
+
+  const faqs = [
+    {
+      question: "What's your typical process for a new project?",
+      answer:
+        "We start with a discovery phase to understand your goals, audience, and competitors. From there, we move into strategy, design, and development—keeping you in the loop at every stage. Each service has its own milestones, but collaboration is constant throughout.",
+    },
+    {
+      question: "How do you ensure the project stays on track?",
+      answer:
+        "We align business goals with technical execution to ensure scalable and future-ready digital solutions through weekly check-ins and agile methodology.",
+    },
+    {
+      question: "Do you provide post-launch support?",
+      answer:
+        "Yes, we provide continuous support, optimization, and maintenance after project delivery to ensure your platform evolves with your business.",
+    },
+    {
+      question: "What is the typical timeline for a project?",
+      answer:
+        "Project timelines depend on scope and complexity, but we always deliver within agreed milestones, typically ranging from 4 to 12 weeks.",
+    },
+  ];
+
+  return (
+    <section className="bg-black px-6 py-[80px]">
+      {/* HEADER */}
+      <div className="w-full mb-[70px]">
+        <div className="flex items-center gap-3 mb-6">
+          <Image src="/logo.png" alt="logo" width={24} height={24} />
+          <span className="tracking-[0.2em] text-white uppercase text-sm font-medium">
+            FAQs
+          </span>
+        </div>
+
+        <h2 className="text-[48px] md:text-[56px] text-white leading-[1.1] font-normal">
+          Frequently Asked <br /> Questions
+        </h2>
+      </div>
+
+      {/* FAQ LIST */}
+      <div className="w-full flex flex-col gap-5">
+        {faqs.map((faq, index) => {
+          const isActive = activeIndex === index;
+
+          return (
+            <div
+              key={index}
+              onClick={() => setActiveIndex(isActive ? null : index)}
+              className="
+                group
+                cursor-pointer
+                flex
+                rounded-[40px]
+                overflow-hidden
+                border border-white/[0.08]
+                transition-all duration-500
+                hover:border-white/[0.2]
+              "
+            >
+              {/* LEFT NUMBER PILL */}
+              <div
+                className={`
+                  w-[70px] md:w-[90px]
+                  flex items-center justify-center
+                  text-[18px] font-medium
+                  rounded-l-[40px]
+                  border-r border-white/[0.08]
+                  transition-colors duration-500
+                  ${isActive ? "bg-[#1E1E1E] text-[#99CCFF]" : "bg-[#1E1E1E] text-white"}
+                `}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </div>
+
+              {/* RIGHT CONTENT (The Running Animation Area) */}
+              <div
+                className={`
+                  flex-1
+                  px-8 py-7
+                  transition-all duration-500 ease-in-out
+                  ${isActive ? "bg-[#99CCFF]" : "bg-[#1E1E1E]"}
+                `}
+              >
+                {/* QUESTION ROW */}
+                <div className="flex items-center justify-between gap-6">
+                  <h4
+                    className={`text-[16px] md:text-[18px] font-medium transition-colors duration-500 ${
+                      isActive ? "text-black" : "text-white"
+                    }`}
+                  >
+                    {faq.question}
+                  </h4>
+
+                  <div
+                    className={`text-[50px] font-light transition-transform duration-500 ${
+                      isActive ? "rotate-45 text-black" : "rotate-0 text-white"
+                    }`}
+                  >
+                    +
+                  </div>
+                </div>
+
+                {/* ANSWER - ANIMATED CONTAINER */}
+                <div
+                  className={`
+                    grid transition-all duration-500 ease-in-out
+                    ${isActive ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"}
+                  `}
+                >
+                  <div className="overflow-hidden">
+                    <p
+                      className={`text-[15px] leading-relaxed max-w-[800px] ${
+                        isActive ? "text-black/80" : "text-transparent"
+                      }`}
+                    >
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 export default function ContactPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -133,29 +265,6 @@ export default function ContactPage() {
     },
   ];
 
-  const faqs = [
-    {
-      question: "What's your typical process for a new project?",
-      answer:
-        "We start with a discovery phase to understand your goals, audience, and competitors. From there, we move into strategy, design, and development—keeping you in the loop at every stage. Each service has its own milestones, but collaboration is constant throughout.",
-    },
-    {
-      question:
-        "How do you ensure business goals align with technical solutions?",
-      answer:
-        "We align business goals with technical execution to ensure scalable and future-ready digital solutions.",
-    },
-    {
-      question: "Do you provide post-project support and maintenance?",
-      answer:
-        "Yes, we provide continuous support, optimization, and maintenance after project delivery.",
-    },
-    {
-      question: "What are your typical project timelines?",
-      answer:
-        "Project timelines depend on scope and complexity, but we always deliver within agreed milestones.",
-    },
-  ];
 
   const nextSlide = () => {
     if (isAnimating) return;
@@ -181,7 +290,7 @@ export default function ContactPage() {
   return (
     <>
       {/* SERVICES SECTION */}
-      <section className="bg-black text-white py-10">
+      <section className="bg-black text-white py-50">
         {/* Header */}
         <div className="text-center mb-20">
           <span className="flex items-center justify-center gap-2 text-xl text-gray-300 mb-3">
@@ -192,7 +301,7 @@ export default function ContactPage() {
         </div>
 
         {/* FIRST IMAGE - FULL WIDTH */}
-        <div className="w-full mb-10 px-4">
+        <div className="w-full mb-20 px-4">
           <div className="rounded-2xl overflow-hidden shadow-lg">
             <img
               src="/web.png" // put image in public folder
@@ -202,7 +311,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* SEPARATOR LINE */}
+         {/* SEPARATOR LINE */}
         <div className="w-full  ">
           <div className="border-t border-white/20 "></div>
         </div>
@@ -212,7 +321,7 @@ export default function ContactPage() {
           <div className="container px-2">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Half Image */}
-              <div className="w-full relative">
+              <div className="w-full relative mb-20">
                 <div className="relative h-[600px] rounded-2xl overflow-hidden">
                   <img
                     src="/web2.png"
@@ -230,13 +339,13 @@ export default function ContactPage() {
             text-white
             rounded-[28px]
             p-200
-            lg:p-15
+            lg:p-12
             shadow-2xl
-            -mt-10
-            lg:mt-10
+           
+           
           "
                 >
-                  <h2 className="text-2xl lg:text-4xl font-semibold mb-6">
+                  <h2 className="text-2xl lg:text-4xl font-semibold ">
                     What We Do
                   </h2>
                   <p className="text-lg lg:text-xl leading-relaxed text-white/90 mb-4">
@@ -263,7 +372,7 @@ export default function ContactPage() {
       <section className="min-h-screen bg-black px-6 text-white ">
         <div className="w-full.363">
           {/* Heading */}
-          <h2 className="text-4xl md:text-5xl font-semibold mb-14">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-20">
             What's Included
           </h2>
 
@@ -350,7 +459,7 @@ export default function ContactPage() {
       </div>
 
         {/* FOURTH SECTION WITH SLIDER CONTAINER */}
-        <div className="relative overflow-hidden mt-15 mb-7">
+        <div className="relative overflow-hidden mt-20 mb-25">
           <div className="container mx-auto px-5">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Half Image */}
@@ -365,7 +474,7 @@ export default function ContactPage() {
               </div>
 
               {/* Slider Container - Partially Overlapping Image */}
-              <div className="w-full lg:w-5/2 lg:-ml-100 relative z-10">
+              <div className="w-full lg:w-5/2 lg:-ml-100 relative z-10 ">
                 <div className="bg-[#0A3DDA] text-white rounded-[28px] p-10 shadow-2xl -mt-20 lg:mt-0">
                   {/* TITLE */}
                   <h1 className="text-4xl font-bold text-white mb-8">
@@ -488,7 +597,7 @@ export default function ContactPage() {
         </div>
         {/* SEPARATOR LINE */}
         <div className="w-full  ">
-          <div className="border-t border-white/20 "></div>
+          <div className="border-t border-white/20  "></div>
         </div>
       </section>
 
@@ -542,98 +651,8 @@ export default function ContactPage() {
           <div className="border-t border-white/10"></div>
         </div>
       </section>
-
-      {/* FAQ SECTION */}
-      <section className="bg-black px-6 py-[80px]">
-        {/* HEADER */}
-        <div className="w-full mb-[70px]">
-          <div className="flex items-center gap-3 mb-6">
-            {/* LOGO */}
-            <Image src="/logo.png" alt="logo" width={18} height={18} />
-            <span className="tracking-widest text-white uppercase text-2xl">
-              FAQs
-            </span>
-          </div>
-
-          <h2 className="text-[56px] text-white leading-[1.1] font-normal">
-            Frequently Asked <br /> Questions
-          </h2>
-        </div>
-
-        {/* FAQ LIST */}
-        <div className="w-full flex flex-col gap-5">
-          {faqs.map((faq, index) => {
-            const isActive = activeFaqIndex === index;
-
-            return (
-              <div
-                key={index}
-                onClick={() => setActiveFaqIndex(isActive ? null : index)}
-                className="
-                  cursor-pointer
-                  flex
-                  rounded-[40px]
-                  overflow-hidden
-                  border border-white/[0.08]
-                  transition-all duration-300
-                  hover:border-white/[0.2]
-                "
-              >
-                {/* LEFT NUMBER PILL (ALWAYS DARK) */}
-                <div
-                  className="
-                    w-[90px]
-                    flex items-center justify-center
-                    bg-white/[0.04]
-                    text-[#a9d4ff]
-                    text-[18px]
-                    rounded-l-[40px]
-                    border-r border-white/[0.08]
-                  "
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                {/* RIGHT CONTENT */}
-                <div
-                  className={`
-                    flex-1
-                    px-8 py-6
-                    transition-all duration-300
-                    ${isActive ? "bg-[#a9d4ff]" : "bg-white/[0.04]"}
-                  `}
-                >
-                  {/* QUESTION ROW */}
-                  <div className="flex items-center gap-6">
-                    <h4
-                      className={`flex-1 text-[16px] ${
-                        isActive ? "text-black" : "text-white"
-                      }`}
-                    >
-                      {faq.question}
-                    </h4>
-
-                    <span
-                      className={`text-[26px] ${
-                        isActive ? "text-black" : "text-white"
-                      }`}
-                    >
-                      {isActive ? "×" : "+"}
-                    </span>
-                  </div>
-
-                  {/* ANSWER */}
-                  {isActive && (
-                    <p className="mt-4 text-[15px] text-black/70 leading-relaxed max-w-[720px]">
-                      {faq.answer}
-                    </p>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      {/* FAQ SECTION -  */}
+      <FAQSection />
 
       {/* CONTACT SECTION */}
       <section className="bg-black px-4">
