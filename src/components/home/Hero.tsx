@@ -10,7 +10,7 @@ interface Trail {
   timestamp: number;
 }
 
-// Mouse Effect Component
+// Mouse Effect Component - Same for both desktop and mobile
 function HeroMouseEffect() {
   const [trails, setTrails] = useState<Trail[]>([]);
   const trailIdRef = useRef(0);
@@ -58,15 +58,58 @@ function HeroMouseEffect() {
       }
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const touchX = touch.clientX;
+      const touchY = touch.clientY;
+      
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        const isInside =
+          touchX >= rect.left &&
+          touchX <= rect.right &&
+          touchY >= rect.top &&
+          touchY <= rect.bottom;
+        setIsInsideHero(isInside);
+        if (isInside) {
+          const now = Date.now();
+          if (now - lastAddedRef.current > 150) {
+            const newTrail: Trail = {
+              x: touchX,
+              y: touchY,
+              id: trailIdRef.current++,
+              timestamp: now,
+            };
+
+            setTrails((prev) => {
+              const updated = [...prev, newTrail];
+              if (updated.length > 3) {
+                return updated.slice(1);
+              }
+              return updated;
+            });
+
+            lastAddedRef.current = now;
+          }
+        } else {
+          if (trails.length > 0) {
+            setTrails([]);
+          }
+        }
+      }
+    };
+
     const cleanupInterval = setInterval(() => {
       const now = Date.now();
       setTrails((prev) => prev.filter((t) => now - t.timestamp < 500));
     }, 100);
 
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       clearInterval(cleanupInterval);
     };
   }, []);
@@ -106,7 +149,7 @@ function HeroMouseEffect() {
   );
 }
 
-// Animated Ideas Text Component
+// Animated Ideas Text Component - Same for both desktop and mobile
 function AnimatedIdeasText() {
   const [isHovered, setIsHovered] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -156,6 +199,8 @@ function AnimatedIdeasText() {
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleMouseEnter}
+        onTouchEnd={handleMouseLeave}
       >
         <div className="relative h-[40px] sm:h-[50px] w-[100px] sm:w-[170px] flex items-center justify-center overflow-hidden">
           <span
@@ -204,103 +249,114 @@ export default function Hero() {
     <section className="relative w-full min-h-screen overflow-x-hidden">
       <div className="absolute inset-0 w-full bg-gradient-to-br from-[#0d1117] via-black to-[#0a0e1a]" />
 
-      <div className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 w-full min-h-screen flex flex-col items-start sm:items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 w-full pointer-events-none">
           <HeroMouseEffect />
         </div>
-        <div className="relative z-20 w-full max-w-6xl mx-auto">
-          <div className="mb-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl text-white leading-tight flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-              <span>Turning</span>
-              <AnimatedIdeasText />
-              <span>Into</span>
-            </h1>
-          </div>
+        
+        {/* Main Content - Full width on both mobile and desktop */}
+        <div className="relative z-20 w-full">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-0">
+            
+            {/* Heading Section */}
+            <div className="mb-8 sm:mb-12 text-left sm:text-center">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-tight flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-center gap-2 sm:gap-4">
+                <span className="mb-4 sm:mb-0">Turning</span>
+                <AnimatedIdeasText />
+                <span className="mt-4 sm:mt-0 whitespace-nowrap">Into</span>
+              </h1>
+            </div>
 
-          <div className="mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white leading-tight px-4">
-              <em className="font-normal italic text-white">
-                Scalable Digital Products
-              </em>
-            </h2>
-          </div>
+            {/* Sub Heading Section - Fixed for mobile */}
+            <div className="mb-10 sm:mb-16 text-left sm:text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight">
+                <em className="font-normal italic text-white">
+                  <span className="block sm:inline">Scalable Digital</span>
+                  <span className="block sm:inline"> Products</span>
+                </em>
+              </h2>
+            </div>
 
-          <div className="mb-20">
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light tracking-wide max-w-4xl mx-auto leading-relaxed px-4">
-              We design and develop high-performance web and mobile solutions
-              built for growth.
-            </p>
-          </div>
+            {/* Description Section */}
+            <div className="mb-12 sm:mb-20 max-w-4xl text-left sm:text-center">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light tracking-wide leading-relaxed">
+                We design and develop high-performance web and mobile solutions
+                built for growth.
+              </p>
+            </div>
 
-          {/* CTA Button - Updated with proper spacing */}
-          <div className="w-full flex justify-center mt-8">
-            <button
-              className="group inline-flex items-center gap-3
-                         px-12 py-5
-                         rounded-full
-                         border border-white/30
-                         overflow-hidden
-                         bg-transparent
-                         hover:border-white/60 hover:bg-white/5
-                         transition-all duration-300
-                         relative z-20
-                         cursor-pointer"
-            >
-              {/* TEXT Container */}
-              <span className="relative block w-[145px] h-7 overflow-hidden">
-                <span
-                  className="absolute inset-0 flex items-center justify-center text-white
-                             transition-transform duration-500
-                             group-hover:translate-x-full text-xl font-medium"
-                >
-                  Start Project
-                </span>
-
-                <span
-                  className="absolute inset-0 flex items-center justify-center text-white
-                             -translate-x-full
-                             transition-transform duration-500
-                             group-hover:translate-x-0 text-xl font-medium"
-                >
-                  Start Project
-                </span>
-              </span>
-
-              {/* ARROW Container */}
-              <span
-                className="relative w-11 h-11 rounded-full
-                           bg-gradient-to-r from-white to-white
-                           flex items-center justify-center
-                           overflow-hidden shrink-0
-                           group-hover:from-white group-hover:to-white
-                           transition-all duration-300"
+            {/* CTA Button Section */}
+            <div className="w-full flex justify-start sm:justify-center mt-6 sm:mt-8">
+              <button
+                className="group inline-flex items-center gap-3
+                           px-6 sm:px-8 md:px-10 lg:px-12
+                           py-3 sm:py-4 md:py-5
+                           rounded-full
+                           border border-white/30
+                           overflow-hidden
+                           bg-transparent
+                           hover:border-white/60 hover:bg-white/5
+                           transition-all duration-300
+                           relative z-20
+                           cursor-pointer
+                           active:scale-[0.98] sm:active:scale-100"
               >
-                <span
-                  className="absolute inset-0 flex items-center justify-center
-                             text-blue-700
-                             transition-transform duration-500
-                             group-hover:translate-x-full"
-                >
-                  <FiArrowRight className="w-6 h-6" />
+                {/* TEXT Container */}
+                <span className="relative block w-[110px] sm:w-[130px] md:w-[145px] h-6 sm:h-7 overflow-hidden">
+                  <span
+                    className="absolute inset-0 flex items-center justify-center text-white
+                               transition-transform duration-500
+                               group-hover:translate-x-full text-lg sm:text-xl font-medium"
+                  >
+                    Start Project
+                  </span>
+
+                  <span
+                    className="absolute inset-0 flex items-center justify-center text-white
+                               -translate-x-full
+                               transition-transform duration-500
+                               group-hover:translate-x-0 text-lg sm:text-xl font-medium"
+                  >
+                    Start Project
+                  </span>
                 </span>
 
+                {/* ARROW Container */}
                 <span
-                  className="absolute inset-0 flex items-center justify-center
-                             text-blue-700
-                             -translate-x-full
-                             transition-transform duration-500
-                             group-hover:translate-x-0"
+                  className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full
+                             bg-gradient-to-r from-white to-white
+                             flex items-center justify-center
+                             overflow-hidden shrink-0
+                             group-hover:from-white group-hover:to-white
+                             transition-all duration-300"
                 >
-                  <FiArrowRight className="w-6 h-6" />
+                  <span
+                    className="absolute inset-0 flex items-center justify-center
+                               text-blue-700
+                               transition-transform duration-500
+                               group-hover:translate-x-full"
+                  >
+                    <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                  </span>
+
+                  <span
+                    className="absolute inset-0 flex items-center justify-center
+                               text-blue-700
+                               -translate-x-full
+                               transition-transform duration-500
+                               group-hover:translate-x-0"
+                  >
+                    <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                  </span>
                 </span>
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* ===== SEPARATING LINE AT THE END ===== */}
-      <div className="w-full ">
+      <div className="w-full absolute bottom-0">
         <div className="relative">
           {/* MAIN LINE */}
           <div className="border-t border-white/20 w-full"></div>

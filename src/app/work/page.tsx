@@ -30,7 +30,7 @@ function FAQSection() {
   ];
 
   return (
-    <section className="bg-black px-6 ">
+    <section className="bg-black px-6 py-[80px]">
       {/* HEADER */}
       <div className="w-full mb-[70px]">
         <div className="flex items-center gap-3 mb-6">
@@ -134,31 +134,194 @@ function FAQSection() {
   );
 }
 
+// FYDE Project Detail Page Component
+function WorkPage() {
+  return (
+    <section className="w-full overflow-x-hidden bg-gradient-to-br from-black via-[#0b0f19] to-black px-4 sm:px-6 md:px-10 py-20 md:py-24 text-white">
+      {/* Back Button */}
+      <div className="max-w-[1408px] mx-auto mb-8">
+        <button
+          onClick={() => window.location.reload()} // Or use a state to go back
+          className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
+        >
+          <span className="text-xl">←</span>
+          <span className="text-sm">Back to Works</span>
+        </button>
+      </div>
+
+      {/* ================= HERO ================= */}
+      <div className="max-w-[1408px] mx-auto text-center mb-16 md:mb-20">
+        <div className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-4">
+          <span className="h-2 w-2 rounded-full bg-blue-500" />
+          <span>Work</span>
+        </div>
+
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-wide">
+          FYDE
+        </h1>
+
+        <p className="mt-5 max-w-xl mx-auto text-gray-400 text-sm md:text-base">
+          Visuals Were Curated To Evoke A Sense Of Avant-Garde Sophistication.
+        </p>
+      </div>
+
+      {/* ================= HERO IMAGE ================= */}
+      <div className=" mb-20 md:mb-28">
+        <div className="relative w-full h-[220px] sm:h-[320px] md:h-[584px] rounded-[20px] md:rounded-[24px] overflow-hidden">
+          <img
+            src="/f1.png"
+            alt="FYDE Project"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/40" />
+        </div>
+      </div>
+
+      {/* ================= DETAILS ================= */}
+      <div className="max-w-[1408px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-14 items-center mb-24 md:mb-32">
+        {/* Left text */}
+        <div className="space-y-8 md:space-y-10 text-gray-300">
+          {[
+            ["Industry", "Website Design"],
+            ["Date Completed", "Jan 1, 2022"],
+            ["Scope", "UI Design, Prototyping, And Delivery"],
+            ["Timeline", "2 Months"],
+          ].map(([label, value]) => (
+            <div key={label}>
+              <p className="text-xs tracking-widest text-gray-500 uppercase mb-1">
+                {label}
+              </p>
+              <p className="text-sm md:text-base">{value}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Right image */}
+        <div className="relative w-full h-[220px] sm:h-[300px] md:h-[420px] rounded-[20px] md:rounded-[24px] overflow-hidden">
+          <img
+            src="/f2.png"
+            alt="Project Screen"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      {/* ================= CASE STUDY ================= */}
+      <div className="max-w-[1408px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-16 items-center mb-24 md:mb-32">
+        {/* Text */}
+        <div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-6 md:mb-8">
+            Case Study Overview
+          </h2>
+
+          <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-5 md:mb-6">
+            CricketPro Arena Is A Sports-Focused Digital Platform Created To
+            Connect Players, Teams, And Fans Through A Modern Online Experience.
+          </p>
+
+          <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+            Our Team Designed And Developed A Scalable Sports Website With A
+            Strong Focus On Performance, Mobile Usability, And Easy Content
+            Management.
+          </p>
+        </div>
+
+        {/* Mobile image */}
+        <div className="mx-auto w-[240px] sm:w-[300px] md:w-[416px] h-[340px] sm:h-[400px] md:h-[445px] rounded-[14px] md:rounded-[16px] overflow-hidden">
+          <img
+            src="/f3.png"
+            alt="Mobile Preview"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 38%" }}
+          />
+        </div>
+      </div>
+
+      {/* ================= SUCCESS STORY ================= */}
+      <div className="max-w-[1408px] mx-auto mb-24 md:mb-32">
+        <div className="max-w-3xl mb-10 md:mb-14">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-5 md:mb-6">
+            Success Story Spotlight
+          </h2>
+
+          <p className="text-gray-400 text-sm md:text-base mb-4">
+            CricketPro Arena Transformed The Way Local Cricket Tournaments Are
+            Managed And Experienced Online.
+          </p>
+        </div>
+
+        <div className="w-full h-[220px] sm:h-[300px] md:h-[520px] rounded-[20px] md:rounded-[24px] overflow-hidden">
+          <img
+            src="/f4.png"
+            alt="Spin Visual"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      {/* ================= LAPTOP (FULL WIDTH) ================= */}
+      <div className="mb-24">
+        {/* mobile normal width */}
+        <div className="block md:hidden w-full h-[220px] sm:h-[300px] overflow-hidden rounded-[20px]">
+          <img
+            src="/laptopvelvet.png"
+            alt="Laptop"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 78%" }}
+          />
+        </div>
+
+        {/* desktop full-bleed */}
+        <div className="hidden md:block relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw]">
+          <div className="w-full h-[760px] overflow-hidden">
+            <img
+              src="/f5.png"
+              alt="Laptop"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: "center 78%" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* ================= RESULTS ================= */}
+      <div className="max-w-[1408px] mx-auto">
+        <div className="max-w-3xl mb-10 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-5 md:mb-6">
+            Results In Focus
+          </h2>
+
+          <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+            The New Cricket Platform Delivered A Faster, More Engaging Digital
+            Experience With Improved Performance.
+          </p>
+        </div>
+
+        <div className="w-full h-[220px] sm:h-[300px] md:h-[460px] rounded-[20px] md:rounded-[24px] overflow-hidden">
+          <img
+            src="/brin.jpg"
+            alt="Results"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function LatestWorks() {
   const [active, setActive] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
-  const workFaqs = [
-    {
-      question: "What's your typical process for a new project?",
-      answer:
-        "We start with a discovery phase to understand your goals, audience, and competitors. From there, we move into strategy, design, and development—keeping you in the loop at every stage. Each service has its own milestones, but collaboration is constant throughout.",
-    },
-    {
-      question: "How do you ensure our project aligns with business goals?",
-      answer:
-        "We align business goals with technical execution to ensure scalable and future-ready digital solutions. Our team works closely with stakeholders to understand objectives and translate them into actionable technical requirements.",
-    },
-    {
-      question: "Do you provide ongoing support after project delivery?",
-      answer:
-        "Yes, we provide continuous support, optimization, and maintenance after project delivery. We offer various support packages to ensure your digital solution continues to perform optimally and evolves with your business needs.",
-    },
-    {
-      question: "What's the typical timeline for projects?",
-      answer:
-        "Project timelines depend on scope and complexity, but we always deliver within agreed milestones. We provide detailed project timelines during the planning phase and maintain regular communication about progress throughout the development process.",
-    },
-  ];
+  // Handle project click
+  const handleProjectClick = (projectId: number) => {
+    setSelectedProject(`fyde-${projectId}`);
+  };
+
+  // If a project is selected, show the project detail page
+  if (selectedProject) {
+    return <WorkPage />;
+  }
 
   return (
     <>
@@ -203,6 +366,7 @@ export default function LatestWorks() {
                   {[rowStart, rowStart + 1].map((i) => (
                     <div
                       key={i}
+                      onClick={() => handleProjectClick(i)}
                       onMouseEnter={() => setActive(i)}
                       className="
                         rounded-[26px]
@@ -211,6 +375,9 @@ export default function LatestWorks() {
                         p-[22px]
                         transition-all duration-500
                         hover:border-white/20
+                        cursor-pointer
+                        group
+                        hover:scale-[1.02]
                       "
                     >
                       {/* Image (FIXED SIZE) */}
@@ -218,7 +385,7 @@ export default function LatestWorks() {
                         <img
                           src={i % 2 === 0 ? "/fyde1.png" : "/fyde2.png"}
                           alt="Work"
-                          className="w-full h-[420px] object-cover"
+                          className="w-full h-[420px] object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
 
@@ -229,6 +396,13 @@ export default function LatestWorks() {
                       <p className="text-[18px] text-gray-400 leading-relaxed max-w-[92%]">
                         Visuals were curated to evoke a sense of avant-garde sophistication.
                       </p>
+                      
+                      {/* View Project Button (appears on hover) */}
+                      <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button className="px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors duration-300">
+                          View Project →
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -245,10 +419,10 @@ export default function LatestWorks() {
         </div>
       </section>
 
-      {/* FAQ SECTION  */}
+      {/* FAQ SECTION */}
       <FAQSection />
 
-      {/* CONTACT SECTION  */}
+      {/* CONTACT SECTION */}
       <section className="bg-black px-4 ">
         {/* HEADER WITH LOGO */}
         <div className="w-full mb-[70px]"> </div>

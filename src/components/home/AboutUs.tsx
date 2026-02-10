@@ -28,19 +28,19 @@ function MoreAboutUsButton() {
     <div className="w-fit">
       <button
         className="group inline-flex items-center gap-3
-                   px-8 py-4
+                   px-6 sm:px-8 py-3 sm:py-4
                    rounded-full
                    border border-white/30
                    overflow-hidden
-                    
-                   transition-all duration-300"
+                   transition-all duration-300
+                   active:scale-[0.98] sm:active:scale-100"
       >
         {/* TEXT */}
-        <span className="relative block w-[130px] h-6 overflow-hidden">
+        <span className="relative block w-[120px] sm:w-[130px] h-5 sm:h-6 overflow-hidden">
           <span
             className="absolute inset-0 flex items-center text-white
                        transition-transform duration-500
-                       group-hover:translate-x-full"
+                       group-hover:translate-x-full text-base sm:text-lg"
           >
             More About Us
           </span>
@@ -49,7 +49,7 @@ function MoreAboutUsButton() {
             className="absolute inset-0 flex items-center text-white
                        -translate-x-full
                        transition-transform duration-500
-                       group-hover:translate-x-0"
+                       group-hover:translate-x-0 text-base sm:text-lg"
           >
             More About Us
           </span>
@@ -57,7 +57,7 @@ function MoreAboutUsButton() {
 
         {/* ARROW */}
         <span
-          className="relative w-9 h-9 rounded-full
+          className="relative w-7 h-7 sm:w-9 sm:h-9 rounded-full
                      bg-gradient-to-r from-white to-white
                      flex items-center justify-center
                      overflow-hidden shrink-0
@@ -70,7 +70,7 @@ function MoreAboutUsButton() {
                        transition-transform duration-500
                        group-hover:translate-x-full"
           >
-            <FiArrowRight className="w-5 h-5" />
+            <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </span>
 
           <span
@@ -80,7 +80,7 @@ function MoreAboutUsButton() {
                        transition-transform duration-500
                        group-hover:translate-x-0"
           >
-            <FiArrowRight className="w-5 h-5" />
+            <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </span>
         </span>
       </button>
@@ -96,7 +96,7 @@ function StatisticsGrid() {
       percentage: "%",
       label: "Focus On Solutions",
       description: "Complete dedication to solving client challenges",
-      icon: <FiTarget className="w-10 h-10" />,
+      icon: <FiTarget className="w-8 h-8 sm:w-10 sm:h-10" />,
       color: "text-[#003BD7]",
       bgColor: "bg-gray-900 rounded-full",
       borderColor: "border-b-[#003BD7]", 
@@ -106,7 +106,7 @@ function StatisticsGrid() {
       plus: "+",
       label: "Team Experience",
       description: "Years of collective expertise in digital solutions",
-      icon: <FiUsers className="w-10 h-10" />,
+      icon: <FiUsers className="w-8 h-8 sm:w-10 sm:h-10" />,
       color: "text-[#003BD7]",
       bgColor: "bg-gray-900 rounded-full",
       borderColor: "border-b-[3652A3]",
@@ -116,7 +116,7 @@ function StatisticsGrid() {
       plus: "+",
       label: "Countries Served",
       description: "Global reach with international client base",
-      icon: <FiGlobe className="w-10 h-10" />,
+      icon: <FiGlobe className="w-8 h-8 sm:w-10 sm:h-10" />,
       color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
       borderColor: "border-b-[#3652A3]",
@@ -126,7 +126,7 @@ function StatisticsGrid() {
       plus: "+",
       label: "Projects Delivered",
       description: "Successful digital transformations completed",
-      icon: <LuMousePointerClick className="w-10 h-10" />,
+      icon: <LuMousePointerClick className="w-8 h-8 sm:w-10 sm:h-10" />,
       color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
       borderColor: "border-b-[3652A3]", 
@@ -136,7 +136,7 @@ function StatisticsGrid() {
       plus: "+",
       label: "Industry Verticals",
       description: "Diverse industry expertise and solutions",
-      icon: <LiaIndustrySolid className="w-10 h-10" />,
+      icon: <LiaIndustrySolid className="w-8 h-8 sm:w-10 sm:h-10" />,
       color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
       borderColor: "border-b-[#3652A3]", 
@@ -146,7 +146,7 @@ function StatisticsGrid() {
       plus: "+",
       label: "Development Staff",
       description: "Skilled professionals driving innovation",
-      icon: <FiCode className="w-10 h-10 text-[#003BD7]" />,
+      icon: <FiCode className="w-8 h-8 sm:w-10 sm:h-10 text-[#003BD7]" />,
       color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
       borderColor: "border-b-[#003BD7]", 
@@ -154,32 +154,37 @@ function StatisticsGrid() {
   ];
 
   return (
-    <div className="w-full py-16 md:py-20">
+    <div className="w-full py-12 sm:py-16 md:py-20">
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
           {stats.map((stat, index) => (
             <div key={index} className="group">
               {/* Left-Aligned Card Container with dynamic border color */}
-              <div className={`bg-gray-900/40 rounded-4xl p-8 border-b-3 ${stat.borderColor} flex flex-col text-left`}>
+              <div className={`bg-gray-900/40 rounded-2xl sm:rounded-3xl lg:rounded-4xl p-4 sm:p-6 lg:p-8 border-b-2 sm:border-b-3 ${stat.borderColor} flex flex-col text-left h-full`}>
                 {/* ICON (Top Left) */}
-                <div className={`mb-6 p-4 ${stat.bgColor} w-fit`}>
+                <div className={`mb-3 sm:mb-4 lg:mb-6 p-2 sm:p-3 lg:p-4 ${stat.bgColor} w-fit`}>
                   <div className={stat.color}>{stat.icon}</div>
                 </div>
 
                 {/* VALUE with colored symbol */}
-                <div className="mb-3 leading-none flex items-baseline">
+                <div className="mb-1 sm:mb-2 lg:mb-3 leading-none flex items-baseline">
                   {/* White number */}
-                  <div className="text-5xl md:text-6xl text-white">
+                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white">
                     {stat.value}
                   </div>
                   {/* Colored symbol (% or +) */}
-                  <div className={`text-6xl md:text-6xl ${stat.color} ml-1`}>
+                  <div className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ${stat.color} ml-1`}>
                     {stat.percentage || stat.plus}
                   </div>
                 </div>
 
                 {/* LABEL (Below Value, Left) */}
-                <div className="text-2xl text-white mb-4">{stat.label}</div>
+                <div className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-1 sm:mb-2 lg:mb-3">{stat.label}</div>
+                
+                {/* DESCRIPTION */}
+                <div className="text-xs sm:text-sm md:text-base text-gray-300 mt-auto">
+                  {stat.description}
+                </div>
               </div>
             </div>
           ))}
@@ -194,27 +199,27 @@ function IndustryLeaders() {
   const companies = [
     {
       name: "ASGARDIA",
-      icon: <FaRocket className="w-8 h-8" />,
+      icon: <FaRocket className="w-6 h-6 sm:w-8 sm:h-8" />,
       color: "text-white"
     },
     {
       name: "nirastate",
-      icon: <FaBuilding className="w-8 h-8" />,
+      icon: <FaBuilding className="w-6 h-6 sm:w-8 sm:h-8" />,
       color: "text-white"
     },
     {
       name: "velocity",
-      icon: <FaChartLine className="w-8 h-8" />,
+      icon: <FaChartLine className="w-6 h-6 sm:w-8 sm:h-8" />,
       color: "text-white"
     },
     {
       name: "OUTOSIA",
-      icon: <FaGlobeAmericas className="w-8 h-8" />,
+      icon: <FaGlobeAmericas className="w-6 h-6 sm:w-8 sm:h-8" />,
       color: "text-white"
     },
     {
       name: "ASGARDIA",
-      icon: <FaRocket className="w-8 h-8" />,
+      icon: <FaRocket className="w-6 h-6 sm:w-8 sm:h-8" />,
       color: "text-white"
     },
   ];
@@ -255,13 +260,13 @@ function IndustryLeaders() {
   }, []);
 
   return (
-    <div className="w-full py-6 md:py-1 border-2 border-white/20 mt-9">
+    <div className="w-full py-6 sm:py-8 border-2 border-white/20 mt-6 sm:mt-9">
       <div className="px-4 sm:px-6 lg:px-8">
         {/* Auto-Scrolling Logos - Continuous scroll without hover pause */}
         <div className="relative overflow-hidden" ref={containerRef}>
           <div
             ref={scrollRef}
-            className="flex items-center space-x-8 md:space-x-12 lg:space-x-16 py-4"
+            className="flex items-center space-x-6 sm:space-x-8 md:space-x-12 lg:space-x-16 py-4"
             style={{
               overflowX: "hidden",
               whiteSpace: "nowrap",
@@ -279,14 +284,14 @@ function IndustryLeaders() {
             {/* First Set */}
             {companies.map((company, index) => (
               <div key={index} className="flex-shrink-0">
-                <div className="w-56 flex items-center justify-center">
-                  <div className="flex items-center gap-4 px-4">
+                <div className="w-40 sm:w-48 md:w-56 flex items-center justify-center">
+                  <div className="flex items-center gap-3 sm:gap-4 px-3 sm:px-4">
                     <div className="flex-shrink-0">
                       <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
                         {company.icon}
                       </div>
                     </div>
-                    <div className={`text-xl ${company.color}`}>
+                    <div className={`text-base sm:text-lg md:text-xl ${company.color}`}>
                       {company.name}
                     </div>
                   </div>
@@ -297,14 +302,14 @@ function IndustryLeaders() {
             {/* Duplicate Set for Seamless Loop */}
             {companies.map((company, index) => (
               <div key={`dup-${index}`} className="flex-shrink-0">
-                <div className="w-56 flex items-center justify-center">
-                  <div className="flex items-center gap-4 px-4">
+                <div className="w-40 sm:w-48 md:w-56 flex items-center justify-center">
+                  <div className="flex items-center gap-3 sm:gap-4 px-3 sm:px-4">
                     <div className="flex-shrink-0">
                       <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
                         {company.icon}
                       </div>
                     </div>
-                    <div className={`text-xl font-bold ${company.color}`}>
+                    <div className={`text-base sm:text-lg md:text-xl font-bold ${company.color}`}>
                       {company.name}
                     </div>
                   </div>
@@ -315,14 +320,14 @@ function IndustryLeaders() {
             {/* Third Set for better continuity */}
             {companies.map((company, index) => (
               <div key={`third-${index}`} className="flex-shrink-0">
-                <div className="w-56 flex items-center justify-center">
-                  <div className="flex items-center gap-4 px-4">
+                <div className="w-40 sm:w-48 md:w-56 flex items-center justify-center">
+                  <div className="flex items-center gap-3 sm:gap-4 px-3 sm:px-4">
                     <div className="flex-shrink-0">
                       <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
                         {company.icon}
                       </div>
                     </div>
-                    <div className={`text-xl ${company.color}`}>
+                    <div className={`text-base sm:text-lg md:text-xl ${company.color}`}>
                       {company.name}
                     </div>
                   </div>
@@ -332,137 +337,8 @@ function IndustryLeaders() {
           </div>
 
           {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Alternative: With different React Icons
-function IndustryLeadersVariant() {
-  const companies = [
-    {
-      name: "ASGARDIA",
-      icon: <FaRocket className="w-8 h-8" />,
-      color: "text-white"
-    },
-    {
-      name: "nirastate",
-      icon: <FaBuilding className="w-8 h-8" />,
-      color: "text-white"
-    },
-    {
-      name: "velocity",
-      icon: <FaDatabase className="w-8 h-8" />,
-      color: "text-white"
-    },
-    {
-      name: "OUTOSIA",
-      icon: <FaCloud className="w-8 h-8" />,
-      color: "text-white"
-    },
-    {
-      name: "ASGARDIA",
-      icon: <FaMobileAlt className="w-8 h-8" />,
-      color: "text-white"
-    },
-  ];
-
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    const scrollWidth = scrollContainer.scrollWidth;
-    const clientWidth = scrollContainer.clientWidth;
-    const maxScroll = scrollWidth - clientWidth;
-
-    let animationId: number;
-    let scrollPosition = 0;
-    const speed = 0.5;
-
-    const animateScroll = () => {
-      scrollPosition += speed;
-
-      if (scrollPosition >= maxScroll / 2) {
-        scrollPosition = 0;
-      }
-
-      scrollContainer.scrollLeft = scrollPosition;
-      animationId = requestAnimationFrame(animateScroll);
-    };
-
-    animationId = requestAnimationFrame(animateScroll);
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, []);
-
-  return (
-    <div className="w-full py-6 md:py-1 border-2 border-white/20 mt-9">
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden">
-          <div
-            ref={scrollRef}
-            className="flex items-center space-x-8 md:space-x-12 lg:space-x-16 py-4"
-            style={{
-              overflowX: "hidden",
-              whiteSpace: "nowrap",
-              WebkitOverflowScrolling: "touch",
-              msOverflowStyle: "none",
-              scrollbarWidth: "none",
-            }}
-          >
-            <style jsx>{`
-              div::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
-
-            {/* First Set */}
-            {companies.map((company, index) => (
-              <div key={index} className="flex-shrink-0">
-                <div className="w-56 flex items-center justify-center">
-                  <div className="flex items-center gap-4 px-4">
-                    <div className="flex-shrink-0">
-                      <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
-                        {company.icon}
-                      </div>
-                    </div>
-                    <div className={`text-xl ${company.color}`}>
-                      {company.name}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            {/* Duplicate Set */}
-            {companies.map((company, index) => (
-              <div key={`dup-${index}`} className="flex-shrink-0">
-                <div className="w-56 flex items-center justify-center">
-                  <div className="flex items-center gap-4 px-4">
-                    <div className="flex-shrink-0">
-                      <div className="text-white opacity-80 hover:opacity-100 transition-opacity">
-                        {company.icon}
-                      </div>
-                    </div>
-                    <div className={`text-xl font-bold ${company.color}`}>
-                      {company.name}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
         </div>
       </div>
     </div>
@@ -474,31 +350,32 @@ export default function AboutUs() {
   return (
     <section className="w-full min-h-screen bg-black">
       {/* TOP SECTION */}
-      <div className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="relative flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+      <div className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
+        <div className="relative flex flex-col lg:flex-row items-start justify-between gap-8 sm:gap-12 lg:gap-20">
           {/* LEFT CONTENT */}
-          <div className="lg:w-1/2">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="lg:w-1/2 w-full">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
               <Image 
                 src="/logo.png" 
                 alt="About Us icon" 
-                width={18} 
-                height={18} 
+                width={16} 
+                height={16}
+                className="w-4 h-4 sm:w-5 sm:h-5" 
               />
               <div className="inline-block">
-                <span className="text-white font-semibold text-3xl tracking-wider">
+                <span className="text-white font-semibold text-2xl sm:text-3xl tracking-wider">
                   About Us
                 </span>
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-4xl text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl text-white leading-tight mb-4 sm:mb-6">
               Trusted By Startups And Businesses
-              <br />
+              <br className="hidden sm:block" />
               To Build Future-Ready Digital Solutions
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-3xl">
               We Combine Strategy, Design, And Technology To Build Scalable
               Digital Products For Growing Businesses.
             </p>
@@ -507,9 +384,9 @@ export default function AboutUs() {
             <MoreAboutUsButton />
           </div>
 
-          {/* RIGHT IMAGE */}
-          <div className="lg:w-1/2 relative">
-            <div className="relative rounded-4xl overflow-hidden">
+          {/* RIGHT IMAGE - Hidden on mobile, visible on sm and above */}
+          <div className="lg:w-1/2 relative hidden sm:block">
+            <div className="relative rounded-3xl sm:rounded-4xl overflow-hidden">
               <Image
                 src="/about.png"
                 alt="About Us"
@@ -533,12 +410,15 @@ export default function AboutUs() {
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="border-t border-white/20 w-full"></div>
       </div>
+      
       {/* Version 1: Full with description */}
       <StatisticsGrid />
+      
       {/* SEPARATOR LINE */}
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="border-t border-white/10 w-full"></div>
       </div>
+      
       {/* INDUSTRY LEADERS SECTION - Now it won't stop on hover */}
       <IndustryLeaders />
     </section>
