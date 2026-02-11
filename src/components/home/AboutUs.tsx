@@ -4,8 +4,6 @@ import {
   FiTarget,
   FiUsers,
   FiGlobe,
-  FiCheckCircle,
-  FiLayers,
   FiCode,
   FiArrowRight,
 } from "react-icons/fi";
@@ -17,9 +15,6 @@ import {
   FaRocket, 
   FaChartLine,
   FaBuilding,
-  FaDatabase,
-  FaCloud,
-  FaMobileAlt
 } from "react-icons/fa";
 
 // Updated MoreAboutUsButton with the new style from Hero button
@@ -260,7 +255,7 @@ function IndustryLeaders() {
   }, []);
 
   return (
-    <div className="w-full py-6 sm:py-8 border-2 border-white/20 mt-6 sm:mt-9">
+    <div className="w-full py-6 sm:py-4  border-t border-b border-white/30 mt-6 sm:mt-9">
       <div className="px-4 sm:px-6 lg:px-8">
         {/* Auto-Scrolling Logos - Continuous scroll without hover pause */}
         <div className="relative overflow-hidden" ref={containerRef}>

@@ -453,21 +453,21 @@ export default function Page() {
   return (
     <main className="bg-black text-white">
       {/* HERO SECTION */}
-      <section className="relative pt-16 sm:pt-18 md:pt-20 lg:pt-24 xl:pt-28 2xl:mt-50 pb-16 sm:pb-18 md:pb-20 lg:pb-24 xl:pb-32 2xl:pb-40 text-center overflow-hidden">
+      <section className="relative pt-16 sm:pt-18 md:pt-10 lg:pt-24 xl:pt-28 2xl:mt-20 pb-16 sm:pb-18 md:pb-20 lg:pb-24 xl:pb-32 2xl:pb-40 text-center overflow-hidden">
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-5 md:px-6">
           <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-300">
             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full bg-blue-500" />
             <span>About Quicbinary</span>
           </div>
 
-          <h1 className="mt-3 sm:mt-3.5 md:mt-4 lg:mt-4.5 xl:mt-5 2xl:mt-6 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
+          <h1 className="mt-8 sm:mt-3.5 lg:mt-4.5 xl:mt-5 2xl:mt-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
             From concept to market leader
           </h1>
         </div>
       </section>
 
-      {/* HERO IMAGE */}
-      <section className="px-4 sm:px-5 md:px-6 -mt-12 sm:-mt-14 md:-mt-16 lg:-mt-20 xl:-mt-24 2xl:-mt-32 pb-8 sm:pb-9 md:pb-10 lg:pb-12 xl:pb-16 2xl:pb-20">
+      {/* HERO IMAGE - FIXED: NO NEGATIVE MARGIN ON MOBILE */}
+      <section className="px-4 sm:px-5 md:px-6 -mt-0 sm:-mt-14 md:-mt-16 lg:-mt-20 xl:-mt-24 2xl:-mt-32 pb-8 sm:pb-9 md:pb-10 lg:pb-12 xl:pb-16 2xl:pb-20">
         <img
           src="a.png"
           alt="Team discussion"

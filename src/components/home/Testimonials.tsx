@@ -160,7 +160,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="bg-black overflow-hidden">
+    <section className="bg-black overflow-hidden">  
       {/* HEADER */}
       <div className="w-full px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 lg:mb-[70px]">
         <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 lg:mb-6">

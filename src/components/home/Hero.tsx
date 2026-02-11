@@ -116,7 +116,6 @@ function HeroMouseEffect() {
 
   return (
     <>
-      {/* Hero section reference - full width */}
       <div ref={heroRef} className="absolute inset-0 w-full" />
       {isInsideHero &&
         trails.map((trail, index) => {
@@ -159,7 +158,6 @@ function AnimatedIdeasText() {
     if (animationTimeoutRef.current) {
       clearTimeout(animationTimeoutRef.current);
     }
-
     setIsHovered(true);
     setIsAnimating(true);
   };
@@ -169,10 +167,9 @@ function AnimatedIdeasText() {
     if (animationTimeoutRef.current) {
       clearTimeout(animationTimeoutRef.current);
     }
-
     animationTimeoutRef.current = setTimeout(() => {
       setIsAnimating(false);
-    }, 300);
+    }, 100);
   };
 
   useEffect(() => {
@@ -202,17 +199,16 @@ function AnimatedIdeasText() {
         onTouchStart={handleMouseEnter}
         onTouchEnd={handleMouseLeave}
       >
-        <div className="relative h-[40px] sm:h-[50px] w-[100px] sm:w-[170px] flex items-center justify-center overflow-hidden">
+        <div className="relative h-[40px] sm:h-[90px] w-[100px] sm:w-[250px] flex items-center justify-center overflow-hidden">
           <span
             className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-6xl font-medium leading-none tracking-wider"
             style={{
               transform: isHovered ? "translateY(-100%)" : "translateY(0%)",
-              opacity: isHovered ? 0 : 1,
+              opacity: isHovered ? 10 : 1,
             }}
           >
             Ideas
           </span>
-
           <span
             className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-6xl font-medium leading-none tracking-wider"
             style={{
@@ -223,7 +219,6 @@ function AnimatedIdeasText() {
             Ideas
           </span>
         </div>
-
         <span
           className="absolute inset-0 rounded-full transition-all duration-300 pointer-events-none"
           style={{
@@ -235,7 +230,6 @@ function AnimatedIdeasText() {
               : "none",
           }}
         />
-
         {isAnimating && isHovered && (
           <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 via-blue-400/10 to-blue-500/20 animate-pulse pointer-events-none" />
         )}
@@ -254,32 +248,34 @@ export default function Hero() {
           <HeroMouseEffect />
         </div>
         
-        {/* Main Content - Full width on both mobile and desktop */}
         <div className="relative z-20 w-full">
-          <div className="w-full max-w-6xl mx-auto px-4 sm:px-0">
+          <div className="w-full px-4 sm:px-0">
             
             {/* Heading Section */}
-            <div className="mb-8 sm:mb-12 text-left sm:text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-tight flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-center gap-2 sm:gap-4">
-                <span className="mb-4 sm:mb-0">Turning</span>
+            <div className="text-left sm:text-center">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl text-white leading-tight flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-center gap-2 sm:gap-4">
+                <span>Turning</span>
                 <AnimatedIdeasText />
-                <span className="mt-4 sm:mt-0 whitespace-nowrap">Into</span>
+                <span className="whitespace-nowrap">Into</span>
               </h1>
             </div>
 
-            {/* Sub Heading Section - Fixed for mobile */}
-            <div className="mb-10 sm:mb-16 text-left sm:text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight">
+            {/* Sub Heading Section - THREE LINES on mobile, inline on desktop */}
+            <div className="mb-10 sm:mb-6 text-left sm:text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-9xl font-light text-white leading-tight">
                 <em className="font-normal italic text-white">
-                  <span className="block sm:inline">Scalable Digital</span>
-                  <span className="block sm:inline"> Products</span>
+                  <span className="block sm:inline">Scalable</span>
+                  <span className="hidden sm:inline"> </span>
+                  <span className="block sm:inline">Digital</span>
+                  <span className="hidden sm:inline"> </span>
+                  <span className="block sm:inline">Products</span>
                 </em>
               </h2>
             </div>
 
             {/* Description Section */}
-            <div className="mb-12 sm:mb-20 max-w-4xl text-left sm:text-center">
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light tracking-wide leading-relaxed">
+            <div className="mb-12 sm:mb-10 text-left sm:text-center">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-xl text-white/80 font-light tracking-wide leading-relaxed">
                 We design and develop high-performance web and mobile solutions
                 built for growth.
               </p>
@@ -301,7 +297,6 @@ export default function Hero() {
                            cursor-pointer
                            active:scale-[0.98] sm:active:scale-100"
               >
-                {/* TEXT Container */}
                 <span className="relative block w-[110px] sm:w-[130px] md:w-[145px] h-6 sm:h-7 overflow-hidden">
                   <span
                     className="absolute inset-0 flex items-center justify-center text-white
@@ -310,7 +305,6 @@ export default function Hero() {
                   >
                     Start Project
                   </span>
-
                   <span
                     className="absolute inset-0 flex items-center justify-center text-white
                                -translate-x-full
@@ -320,8 +314,6 @@ export default function Hero() {
                     Start Project
                   </span>
                 </span>
-
-                {/* ARROW Container */}
                 <span
                   className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full
                              bg-gradient-to-r from-white to-white
@@ -338,7 +330,6 @@ export default function Hero() {
                   >
                     <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                   </span>
-
                   <span
                     className="absolute inset-0 flex items-center justify-center
                                text-blue-700
@@ -355,10 +346,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ===== SEPARATING LINE AT THE END ===== */}
+      {/* Separating line at the bottom */}
       <div className="w-full absolute bottom-0">
         <div className="relative">
-          {/* MAIN LINE */}
           <div className="border-t border-white/20 w-full"></div>
         </div>
       </div>

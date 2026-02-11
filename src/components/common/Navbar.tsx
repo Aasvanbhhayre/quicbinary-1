@@ -16,13 +16,11 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    // Set active link based on current path
     if (pathname === "/") setActiveLink("home");
     else if (pathname === "/about") setActiveLink("about");
     else if (pathname === "/services") setActiveLink("services");
@@ -35,170 +33,93 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   };
 
-  const isLinkActive = (link: string) => {
-    return activeLink === link;
-  };
+  const isLinkActive = (link: string) => activeLink === link;
 
   return (
     <header
-      className={`${styles.navbar} w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+      className={`${styles.navbar} w-full fixed top-0 left-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-black/95 border-b border-white/10 py-4 shadow-lg"
-          : "bg-transparent py-1"
+          ? "bg-black/95 border-b border-white/10 shadow-lg"
+          : "bg-transparent"
       }`}
     >
-      <div
-        className={`${styles.navContainer} w-full  px-4 sm:px-6 lg:px-12 xl:px-24`}
-      >
-        {/* LOGO SECTION */}
+      {/* FULL WIDTH NAVBAR */}
+      <div className="w-full h-[100px] flex items-center justify-between px-6 lg:px-6 xl:px-20">
+        {/* LOGO */}
         <div className="flex items-center gap-4">
-          {/* LOGO IMAGE */}
-          <div className="w-50 h-10 relative flex-shrink-0">
+          <div className="relative flex-shrink-0 w-[130px] h-[34px] md:w-[200px] md:h-[40px]">
             <Link
               href="/"
-              className={`${styles.logo} flex items-center gap-3`}
+              className="flex items-center gap-3"
               onClick={() => handleLinkClick("home")}
             >
-            <Image
-              src="/quicbinary logo.png"
-              alt="Quicbinary Logo"
-              fill
-              className="object-contain"
-              priority
-            />
+              <Image
+                src="/quicbinary logo.png"
+                alt="Quicbinary Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </Link>
           </div>
-
-          {/* LOGO TEXT - No hover effects
-          <Link 
-            href="/" 
-            className={`${styles.logo} flex items-center gap-3`}
-            onClick={() => handleLinkClick("home")}
-          >
-            <span className="text-3xl font-bold tracking-tight text-white">
-              
-            </span>
-          </Link> */}
         </div>
 
-        {/* HAMBURGER MENU */}
+        {/* HAMBURGER */}
         <button
           className="lg:hidden flex flex-col gap-1.5 w-8 h-8 justify-center z-50"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
           <span
-            className={`w-full h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+            className={`w-full h-0.5 bg-white transition-all duration-300 ${
+              mobileMenuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
           />
           <span
-            className={`w-full h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`}
+            className={`w-full h-0.5 bg-white transition-all duration-300 ${
+              mobileMenuOpen ? "opacity-0" : ""
+            }`}
           />
           <span
-            className={`w-full h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            className={`w-full h-0.5 bg-white transition-all duration-300 ${
+              mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
           />
         </button>
 
-        {/* NAV LINKS - Desktop */}
-        <nav className={`${styles.navLinks} hidden lg:flex`}>
-          <Link
-            href="/about"
-            className="relative px-4 py-2 group"
-            onClick={() => handleLinkClick("about")}
-          >
-            <span
-              className={`relative z-10 transition-colors duration-300 ${
-                isLinkActive("about")
-                  ? "text-white font-medium"
-                  : "text-gray-400"
-              }`}
+        {/* DESKTOP NAV */}
+        <nav className="hidden lg:flex  text-2xl items-center gap-6">
+          {[
+            { href: "/about", key: "about", label: "About" },
+            { href: "/services", key: "services", label: "Services" },
+            { href: "/work", key: "work", label: "Work" },
+            { href: "/say-hello", key: "hello", label: "Say Hello" },
+          ].map((item) => (
+            <Link
+              key={item.key}
+              href={item.href}
+              className="relative px-10 py-3 group"
+              onClick={() => handleLinkClick(item.key)}
             >
-              About
-            </span>
+              <span
+                className={`relative z-10 transition-colors duration-300 ${
+                  isLinkActive(item.key)
+                    ? "text-black font-medium"
+                    : "text-gray-300"
+                }`}
+              >
+                {item.label}
+              </span>
 
-            {/* Blue background only for active link */}
-            <span
-              className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ease-out ${
-                isLinkActive("about")
-                  ? "scale-100 opacity-100"
-                  : "scale-0 opacity-0"
-              }`}
-            />
-          </Link>
-
-          <Link
-            href="/services"
-            className="relative px-4 py-2 group"
-            onClick={() => handleLinkClick("services")}
-          >
-            <span
-              className={`relative z-10 transition-colors duration-300 ${
-                isLinkActive("services")
-                  ? "text-white font-medium"
-                  : "text-gray-400"
-              }`}
-            >
-              Services
-            </span>
-
-            {/* Blue background only for active link */}
-            <span
-              className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ease-out ${
-                isLinkActive("services")
-                  ? "scale-100 opacity-100"
-                  : "scale-0 opacity-0"
-              }`}
-            />
-          </Link>
-
-          <Link
-            href="/work"
-            className="relative px-4 py-2 group"
-            onClick={() => handleLinkClick("work")}
-          >
-            <span
-              className={`relative z-10 transition-colors duration-300 ${
-                isLinkActive("work")
-                  ? "text-white font-medium"
-                  : "text-gray-400"
-              }`}
-            >
-              Work
-            </span>
-
-            {/* Blue background only for active link */}
-            <span
-              className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ease-out ${
-                isLinkActive("work")
-                  ? "scale-100 opacity-100"
-                  : "scale-0 opacity-0"
-              }`}
-            />
-          </Link>
-
-          <Link
-            href="/say-hello"
-            className="relative px-4 py-2 group"
-            onClick={() => handleLinkClick("hello")}
-          >
-            <span
-              className={`relative z-10 transition-colors duration-300 ${
-                isLinkActive("hello")
-                  ? "text-white font-medium"
-                  : "text-gray-400"
-              }`}
-            >
-              Say Hello
-            </span>
-
-            {/* Blue background only for active link */}
-            <span
-              className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ease-out ${
-                isLinkActive("hello")
-                  ? "scale-100 opacity-100"
-                  : "scale-0 opacity-0"
-              }`}
-            />
-          </Link>
+              <span
+                className={`absolute inset-0 bg-[#99CCFF] rounded-3xl transition-all duration-300 ${
+                  isLinkActive(item.key)
+                    ? "scale-100 opacity-100"
+                    : "scale-0 opacity-0"
+                }`}
+              />
+            </Link>
+          ))}
         </nav>
 
         {/* MOBILE MENU */}
@@ -208,100 +129,41 @@ export default function Navbar() {
           }`}
         >
           <nav className="flex flex-col items-center justify-center h-full gap-8">
-            <Link
-              href="/about"
-              className="relative px-6 py-3"
-              onClick={() => handleLinkClick("about")}
-            >
-              <span
-                className={`text-2xl transition-colors duration-300 ${
-                  isLinkActive("about")
-                    ? "text-white font-medium"
-                    : "text-gray-400"
-                }`}
+            {[
+              { href: "/about", key: "about", label: "About" },
+              { href: "/services", key: "services", label: "Services" },
+              { href: "/work", key: "work", label: "Work" },
+              { href: "/say-hello", key: "hello", label: "Say Hello" },
+            ].map((item) => (
+              <Link
+                key={item.key}
+                href={item.href}
+                className="relative px-6 py-3"
+                onClick={() => handleLinkClick(item.key)}
               >
-                About
-              </span>
-              <span
-                className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ${
-                  isLinkActive("about")
-                    ? "scale-100 opacity-100"
-                    : "scale-0 opacity-0"
-                }`}
-              />
-            </Link>
+                <span
+                  className={`text-2xl transition-colors duration-300 ${
+                    isLinkActive(item.key)
+                      ? "text-white font-medium"
+                      : "text-gray-400"
+                  }`}
+                >
+                  {item.label}
+                </span>
 
-            <Link
-              href="/services"
-              className="relative px-6 py-3"
-              onClick={() => handleLinkClick("services")}
-            >
-              <span
-                className={`text-2xl transition-colors duration-300 ${
-                  isLinkActive("services")
-                    ? "text-white font-medium"
-                    : "text-gray-400"
-                }`}
-              >
-                Services
-              </span>
-              <span
-                className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ${
-                  isLinkActive("services")
-                    ? "scale-100 opacity-100"
-                    : "scale-0 opacity-0"
-                }`}
-              />
-            </Link>
-
-            <Link
-              href="/work"
-              className="relative px-6 py-3"
-              onClick={() => handleLinkClick("work")}
-            >
-              <span
-                className={`text-2xl transition-colors duration-300 ${
-                  isLinkActive("work")
-                    ? "text-white font-medium"
-                    : "text-gray-400"
-                }`}
-              >
-                Work
-              </span>
-              <span
-                className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ${
-                  isLinkActive("work")
-                    ? "scale-100 opacity-100"
-                    : "scale-0 opacity-0"
-                }`}
-              />
-            </Link>
-
-            <Link
-              href="/say-hello"
-              className="relative px-6 py-3"
-              onClick={() => handleLinkClick("hello")}
-            >
-              <span
-                className={`text-2xl transition-colors duration-300 ${
-                  isLinkActive("hello")
-                    ? "text-white font-medium"
-                    : "text-gray-400"
-                }`}
-              >
-                Say Hello
-              </span>
-              <span
-                className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ${
-                  isLinkActive("hello")
-                    ? "scale-100 opacity-100"
-                    : "scale-0 opacity-0"
-                }`}
-              />
-            </Link>
+                <span
+                  className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ${
+                    isLinkActive(item.key)
+                      ? "scale-100 opacity-100"
+                      : "scale-0 opacity-0"
+                  }`}
+                />
+              </Link>
+            ))}
           </nav>
         </div>
       </div>
     </header>
   );
 }
+ 
