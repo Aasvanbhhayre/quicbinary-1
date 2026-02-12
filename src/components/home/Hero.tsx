@@ -201,7 +201,7 @@ function AnimatedIdeasText() {
       >
         <div className="relative h-[40px] sm:h-[90px] w-[100px] sm:w-[250px] flex items-center justify-center overflow-hidden">
           <span
-            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-6xl font-medium leading-none tracking-wider"
+            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-8xl font-medium leading-none tracking-wider"
             style={{
               transform: isHovered ? "translateY(-100%)" : "translateY(0%)",
               opacity: isHovered ? 10 : 1,
@@ -210,7 +210,7 @@ function AnimatedIdeasText() {
             Ideas
           </span>
           <span
-            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-6xl font-medium leading-none tracking-wider"
+            className="absolute inset-0 flex items-center justify-center text-white transition-all duration-300 text-4xl sm:text-8xl font-medium leading-none tracking-wider"
             style={{
               transform: isHovered ? "translateY(0%)" : "translateY(100%)",
               opacity: isHovered ? 1 : 0,
