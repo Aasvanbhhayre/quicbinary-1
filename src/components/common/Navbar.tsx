@@ -88,7 +88,7 @@ export default function Navbar() {
         </button>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden lg:flex  text-2xl items-center gap-6">
+        <nav className="hidden lg:flex text-2xl items-center gap-6">
           {[
             { href: "/about", key: "about", label: "About" },
             { href: "/services", key: "services", label: "Services" },
@@ -98,26 +98,42 @@ export default function Navbar() {
             <Link
               key={item.key}
               href={item.href}
-              className="relative px-10 py-3 group"
+              className="relative px-8 py-3 group"
               onClick={() => handleLinkClick(item.key)}
             >
+              {/* White Circle on Hover (perfect circle, grows from center) */}
               <span
-                className={`relative z-10 transition-colors duration-300 ${
+                className="
+                  absolute inset-0 
+                  bg-[#B3D9FF] 
+                  rounded-full 
+                  scale-0 opacity-0
+                  transition-all duration-700 ease-in
+                  group-hover:scale-100 group-hover:opacity-100
+                "
+              />
+
+              {/* Blue Circle on Active (small → big perfect circle) */}
+              <span
+                className={`absolute inset-0 bg-[#B3D9FF] rounded-full 
+                transform origin-center
+                transition-all duration-700 ease-in-out ${
                   isLinkActive(item.key)
-                    ? "text-black font-medium"
-                    : "text-gray-300"
+                    ? "scale-100 opacity-100 rounded-full"
+                    : "scale-0 opacity-0 rounded-full"
+                }`}
+              />
+
+              {/* Text */}
+              <span
+                className={`relative z-10 transition-all duration-300 ${
+                  isLinkActive(item.key)
+                    ? "text-black"
+                    : "text-gray-300 group-hover:text-black"
                 }`}
               >
                 {item.label}
               </span>
-
-              <span
-                className={`absolute inset-0 bg-[#99CCFF] rounded-3xl transition-all duration-300 ${
-                  isLinkActive(item.key)
-                    ? "scale-100 opacity-100"
-                    : "scale-0 opacity-0"
-                }`}
-              />
             </Link>
           ))}
         </nav>
@@ -138,26 +154,28 @@ export default function Navbar() {
               <Link
                 key={item.key}
                 href={item.href}
-                className="relative px-6 py-3"
+                className="relative px-8 py-4"
                 onClick={() => handleLinkClick(item.key)}
               >
+                {/* Background */}
                 <span
-                  className={`text-2xl transition-colors duration-300 ${
+                  className={`absolute inset-0 bg-[#B3D9FF] rounded-full transition-all duration-300 ${
                     isLinkActive(item.key)
-                      ? "text-white font-medium"
-                      : "text-gray-400"
+                      ? "scale-100 opacity-100 rounded-full"
+                      : "scale-0 opacity-0 rounded-full"
+                  }`}
+                />
+
+                {/* Text */}
+                <span
+                  className={`relative z-10 text-2xl transition-colors duration-300 ${
+                    isLinkActive(item.key)
+                      ? "text-black font-medium"
+                      : "text-gray-300"
                   }`}
                 >
                   {item.label}
                 </span>
-
-                <span
-                  className={`absolute inset-0 bg-[#99CCFF] rounded-full transition-all duration-300 ${
-                    isLinkActive(item.key)
-                      ? "scale-100 opacity-100"
-                      : "scale-0 opacity-0"
-                  }`}
-                />
               </Link>
             ))}
           </nav>
@@ -166,4 +184,3 @@ export default function Navbar() {
     </header>
   );
 }
- 

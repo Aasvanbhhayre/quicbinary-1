@@ -104,7 +104,7 @@ function StatisticsGrid() {
       icon: <FiUsers className="w-8 h-8 sm:w-10 sm:h-10" />,
       color: "text-[#003BD7]",
       bgColor: "bg-gray-900 rounded-full",
-      borderColor: "border-b-[3652A3]",
+      borderColor: "border-b-[#99CCFF]",
     },
     {
       value: "23",
@@ -124,7 +124,7 @@ function StatisticsGrid() {
       icon: <LuMousePointerClick className="w-8 h-8 sm:w-10 sm:h-10" />,
       color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
-      borderColor: "border-b-[3652A3]", 
+      borderColor: "border-b-[#99CCFF]", 
     },
     {
       value: "13",

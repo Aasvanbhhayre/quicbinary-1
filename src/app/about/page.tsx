@@ -72,7 +72,7 @@ function IndustryLeaders() {
   }, []);
 
   return (
-    <div className="w-full py-4 sm:py-5 md:py-6 lg:py-1 border-2 border-white/20 mt-6 sm:mt-8 md:mt-9">
+    <div className="w-full py-4 sm:py-5 md:py-6 lg:py-1 border-t border-b border-white/30 mt-6 sm:mt-8 md:mt-9">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden">
           <div
@@ -177,7 +177,7 @@ function StatisticsGrid() {
       icon: <FiUsers className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10" />,
       color: "text-[#003BD7]",
       bgColor: "bg-gray-900 rounded-full",
-      borderColor: "border-b-[3652A3]",
+      borderColor: "border-b-[#99CCFF]",
     },
     {
       value: "23",
@@ -197,7 +197,7 @@ function StatisticsGrid() {
       icon: <LuMousePointerClick className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10" />,
       color: "text-[#003BD7]", 
       bgColor: "bg-gray-900 rounded-full",
-      borderColor: "border-b-[3652A3]", 
+      borderColor: "border-b-[#99CCFF]", 
     },
     {
       value: "13",
@@ -284,7 +284,7 @@ function ServiceSlider() {
   const duplicatedServices = [...services, ...services];
 
   return (
-    <div className="relative flex w-full overflow-hidden border border-white/20 bg-black py-4 sm:py-5 md:py-6 lg:py-8 xl:py-10">
+    <div className="relative flex w-full overflow-hidden border-t border-b border-white/30 bg-black py-4 sm:py-5 md:py-6 lg:py-8 xl:py-10">
       <motion.div
         className="flex whitespace-nowrap"
         animate={{
@@ -460,7 +460,7 @@ export default function Page() {
             <span>About Quicbinary</span>
           </div>
 
-          <h1 className="mt-8 sm:mt-3.5 lg:mt-4.5 xl:mt-5 2xl:mt-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
+          <h1 className="mt-8 sm:mt-3.5 lg:mt-4.5 xl:mt-5 2xl:mt-1 text- xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
             From concept to market leader
           </h1>
         </div>
