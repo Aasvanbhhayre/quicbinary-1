@@ -70,7 +70,7 @@ export default function Footer() {
         <div className="w-full md:w-auto text-center md:text-left">
           <h4 className="text-[22px] md:text-[25px] mb-4 md:mb-6 text-[#0b5cff] font-medium">Contact info</h4>
           <ul className="space-y-2 md:space-y-3">
-            <li className="text-[18px] md:text-[20px] text-white hover:text-[#0b5cff] transition-colors cursor-pointer">hi@quicbinary.com</li>
+            <li className="text-[18px] md:text-[20px] text-white hover:text-[#0b5cff] transition-colors cursor-pointer">contact@quicbinary.com</li>
             <li className="text-[18px] md:text-[20px] text-white hover:text-[#0b5cff] transition-colors cursor-pointer">+915263647852</li>
             <li className="text-[18px] md:text-[20px] text-white leading-relaxed hover:text-[#0b5cff] transition-colors">
               4th Floor, Vidyapati Building <br />

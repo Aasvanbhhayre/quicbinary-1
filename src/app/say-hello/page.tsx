@@ -9,10 +9,10 @@ export default function Contact() {
       <section className="bg-black text-white py-35 sm:py-25 md:py-25 lg:py-40">
         {/* TOP HEADER */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-7xl font-semibold">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-12xl font-semibold">
             Contact Us
           </h1>
-          <p className="text-gray-400 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-9 max-w-4xl mx-auto">
+          <p className="text-gray-400 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-2xl mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-9 ">
             Visuals Were Curated To Evoke A Sense Of Avant-Garde Sophistication.
           </p>
         </div>
