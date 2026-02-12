@@ -19,7 +19,7 @@ export default function Contact() {
 
         {/* IMAGE CARD */}
         <div className="w-full mb-10 sm:mb-14 md:mb-16 lg:mb-20 px-4">
-          <div className="rounded-2xl overflow-hidden shadow-lg max-w-7xl mx-auto">
+          <div className="rounded-2xl overflow-hidden shadow-lg ">
             <img
               src="/meeting.jpg"
               alt="Team discussion"
@@ -29,7 +29,7 @@ export default function Contact() {
         </div>
 
         {/* CONTACT CONTENT */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6">
+        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6">
           
           {/* LEFT INFO */}
           <div>
@@ -171,7 +171,7 @@ function NewFAQSection() {
   return (
     <section className="bg-black px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-[80px]">
       {/* HEADER */}
-      <div className="max-w-7xl mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-[70px]">
+      <div className=" mb-10 sm:mb-14 md:mb-16 lg:mb-[70px]">
         <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
           <Image src="/logo.png" alt="logo" width={20} height={20} className="sm:w-6 sm:h-6" />
           <span className="tracking-[0.15em] sm:tracking-[0.2em] text-white uppercase text-xs sm:text-sm font-medium">
@@ -185,7 +185,7 @@ function NewFAQSection() {
       </div>
 
       {/* FAQ LIST */}
-      <div className="max-w-7xl mx-auto flex flex-col gap-3 sm:gap-4 md:gap-5">
+      <div className=" flex flex-col gap-3 sm:gap-4 md:gap-5">
         {newFaqs.map((faq, index) => {
           const isActive = activeIndex === index;
 
